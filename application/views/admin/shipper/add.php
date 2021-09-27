@@ -6,10 +6,10 @@
         <div class="card-header">
           <div class="d-inline-block">
               <h3 class="card-title"> <i class="fa fa-plus"></i>
-              <?= trans('add_new_supplier') ?> </h3>
+              <?= trans('add_new_shipper') ?> </h3>
           </div>
           <div class="d-inline-block float-right">
-            <a href="<?= base_url('admin/supplier'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('supplier_list') ?></a>
+            <a href="<?= base_url('admin/shipper'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('shipper_list') ?></a>
           </div>
         </div>
         <div class="card-body">
@@ -22,7 +22,7 @@
                   <!-- For Messages -->
                   <?php $this->load->view('admin/includes/_messages.php') ?>
 
-                  <?php echo form_open(base_url('admin/supplier/add'), 'class="form-horizontal needs-validation" novalidate="novalidate"');  ?> 
+                  <?php echo form_open(base_url('admin/shipper/add'), 'class="form-horizontal needs-validation" novalidate="novalidate"');  ?> 
                   <div class="row">
                     
                     <?php
@@ -70,7 +70,7 @@
                   </div> 
                   <div class="form-group">
                     <div class="col-md-12">
-                      <input type="submit" name="submit" value="<?= trans('add_supplier') ?>" class="btn btn-primary pull-right">
+                      <input type="submit" name="submit" value="<?= trans('add_shipper') ?>" class="btn btn-primary pull-right">
                     </div>
                   </div>
                   <?php echo form_close(); ?>

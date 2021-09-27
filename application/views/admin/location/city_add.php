@@ -1,22 +1,18 @@
-<section class="content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box box-body with-border">
-        <div class="col-md-6">
-          <h4><i class="fa fa-plus"></i> &nbsp; Add New City</h4>
+<div class="content-wrapper">
+  <section class="content">
+    <!-- For Messages -->
+    <?php $this->load->view('admin/includes/_messages.php') ?>
+    <div class="card">
+      <div class="card-header">
+        <div class="d-inline-block">
+          <h3 class="card-title"><i class="fa fa-list"></i>&nbsp; Add New Country</h3>
         </div>
-        <div class="col-md-6 text-right">
-          <a href="<?= base_url('admin/location/city'); ?>" class="btn btn-success"><i class="fa fa-list"></i> City List</a>
+        <div class="d-inline-block float-right">
+          <a href="<?= base_url('admin/location'); ?>" class="btn btn-success"><i class="fa fa-list"></i> Country List</a>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box border-top-solid">
-        <!-- /.box-header -->
-        <!-- form start -->
-        <div class="box-body my-form-body">
+      <!-- /.card-header -->
+      <div class="card-body">
             <?php echo validation_errors(); ?>           
             <?php echo form_open(base_url('admin/location/city/add'), 'class="form-horizontal"');  ?> 
               <div class="form-group">
@@ -45,15 +41,13 @@
                 </div>
               </div>
             <?php echo form_close( ); ?>
-          </div>
-          <!-- /.box-body -->
-      </div>
+            </div>
+      <!-- /.box-body -->
     </div>
-  </div>  
-
-</section> 
+  </section>
+</div> 
 
 
 <script>
-  $("#country").addClass('active');
-  </script>
+  $("#location").addClass('active');
+</script>

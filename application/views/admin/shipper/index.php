@@ -10,11 +10,11 @@
                 <div class="d-inline-block">
                   <h3 class="card-title">
                     <i class="fa fa-list"></i>
-                    <?= trans('supplier_list') ?>
+                    <?= trans('shipper_list') ?>
                   </h3>
               </div>
               <div class="d-inline-block float-right">
-                <a href="<?= base_url('admin/supplier/add'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('add_new_supplier') ?></a>
+                <a href="<?= base_url('admin/shipper/add'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('add_new_shipper') ?></a>
               </div>
             </div>
             
@@ -51,7 +51,7 @@
 function load_records()
 {
 $('.data_container').html('<div class="text-center"><img src="<?=base_url('assets/dist/img')?>/loading.png"/></div>');
-$('.data_container').load('<?=base_url('admin/supplier/list_data')?>');
+$('.data_container').load('<?=base_url('admin/shipper/list_data')?>');
 }
 load_records();
 </script>

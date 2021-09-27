@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier extends MY_Controller
+class Shipper extends MY_Controller
 {
     function __construct(){
 
@@ -9,17 +9,17 @@ class Supplier extends MY_Controller
         $this->rbac->check_module_access();
 
 		$this->load->model('admin/admin_model', 'admin');
-		$this->load->model('admin/supplier_model', 'supplier');
+		$this->load->model('admin/shipper_model', 'shipper');
 		$this->load->model('admin/Activity_model', 'activity_model');
     }
 
 	//-----------------------------------------------------		
 	function index($type=''){
 
-		$data['title'] = 'supplier List';
+		$data['title'] = 'shipper List';
 
 		$this->load->view('admin/includes/_header');
-		$this->load->view('admin/supplier/index', $data);
+		$this->load->view('admin/shipper/index', $data);
 		$this->load->view('admin/includes/_footer');
 	}
 
@@ -33,11 +33,11 @@ class Supplier extends MY_Controller
 
 	//--------------------------------------------------		
 	function list_data(){
-		$data['info'] = $this->supplier->get_all();
+		$data['info'] = $this->shipper->get_all();
 		$controller_name = $this->uri->segment(2);
 		$module_id = module_id($controller_name);
 		$data['form_fields'] = get_form_fields($module_id);
-		$this->load->view('admin/supplier/list',$data);
+		$this->load->view('admin/shipper/list',$data);
 	}
 
 	//-----------------------------------------------------------
@@ -71,7 +71,7 @@ class Supplier extends MY_Controller
 						'errors' => validation_errors()
 					);
 					$this->session->set_flashdata('errors', $data['errors']);
-					redirect(base_url('admin/supplier/add'),'refresh');
+					redirect(base_url('admin/shipper/add'),'refresh');
 				}
 				else{
 					$data = array();
@@ -85,13 +85,13 @@ class Supplier extends MY_Controller
 					$data['created_at'] = date('Y-m-d : h:m:s');
 					
 					$data = $this->security->xss_clean($data);
-					$result = $this->supplier->add_supplier($data);
+					$result = $this->shipper->add_shipper($data);
 					if($result){
 						// Activity Log 
 						$this->activity_model->add_log(10);
 
 						$this->session->set_flashdata('success', 'Record has been added successfully!');
-						redirect(base_url('admin/supplier'));
+						redirect(base_url('admin/shipper'));
 					}
 				}
 			}
@@ -100,7 +100,7 @@ class Supplier extends MY_Controller
 				$module_id = module_id($controller_name);
 				$data['form_fields'] = get_form_fields($module_id);				
 				$this->load->view('admin/includes/_header', $data);
-        		$this->load->view('admin/supplier/add');
+        		$this->load->view('admin/shipper/add');
         		$this->load->view('admin/includes/_footer');
 			}
 	}
@@ -132,7 +132,7 @@ class Supplier extends MY_Controller
 					'errors' => validation_errors()
 				);
 				$this->session->set_flashdata('errors', $data['errors']);
-				redirect(base_url('admin/supplier/edit/'.$eid),'refresh');
+				redirect(base_url('admin/shipper/edit/'.$eid),'refresh');
 			}
 			else{
 				$data = array();
@@ -145,26 +145,26 @@ class Supplier extends MY_Controller
 				$data['updated_at'] = date('Y-m-d : h:m:s');
 
 				$data = $this->security->xss_clean($data);
-				$result = $this->supplier->edit_supplier($data, $field_id);
+				$result = $this->shipper->edit_shipper($data, $field_id);
 
 				if($result){
 					// Activity Log 
 					$this->activity_model->add_log(11);
 
 					$this->session->set_flashdata('success', 'Record has been updated successfully!');
-					redirect(base_url('admin/supplier'));
+					redirect(base_url('admin/shipper'));
 				}
 			}
 		}
 		elseif($id==""){
-			redirect('admin/supplier');
+			redirect('admin/shipper');
 		}
 		else{
 			$module_id = module_id($controller_name);
 			$data['form_fields'] = get_form_fields($module_id);
-			$data['supplier'] = $this->supplier->get_supplier_by_id($id);			
+			$data['shipper'] = $this->shipper->get_shipper_by_id($id);			
 			$this->load->view('admin/includes/_header');
-			$this->load->view('admin/supplier/edit', $data);
+			$this->load->view('admin/shipper/edit', $data);
 			$this->load->view('admin/includes/_footer');
 		}		
 	}
@@ -187,13 +187,13 @@ class Supplier extends MY_Controller
 		$id = decrypt_data($id);
 		$this->rbac->check_operation_access(); // check opration permission
 
-		$this->supplier->delete($id);
+		$this->shipper->delete($id);
 
 		// Activity Log 
 		$this->activity_model->add_log(12);
 
 		$this->session->set_flashdata('success','Record has been Deleted Successfully.');	
-		redirect('admin/supplier');
+		redirect('admin/shipper');
 	}
 	
 }

@@ -32,7 +32,7 @@ class Location extends MY_Controller
 			$data[]= array(
 				++$count,
 				$row['name'],
-				'<span class="btn btn-xs btn-success" title="status">'.$status.'<span>',				
+				$status,
 				'<a title="Edit" class="update btn btn-sm btn-warning" href="'.base_url('admin/location/country/edit/'.$row['id']).'"> <i class="fa fa-pencil-square-o"></i></a>
             	 <a title="Delete" class="delete btn btn-sm btn-danger" href="'.base_url('admin/location/country/del/'.$row['id']).'" onclick="return confirm(\'Do you want to delete ?\')" > <i class="fa fa-trash-o"></i></a>'
 			);
@@ -139,7 +139,7 @@ class Location extends MY_Controller
 				++$count,
 				get_country_name($row['country_id']),
 				$row['name'],
-				'<span class="btn btn-xs btn-success" title="status">'.$status.'<span>',				
+				$status,
 				'<a title="Edit" class="update btn btn-sm btn-warning" href="'.base_url('admin/location/state/edit/'.$row['id']).'"> <i class="fa fa-pencil-square-o"></i></a>
             	 <a title="Delete" class="delete btn btn-sm btn-danger" href="'.base_url('admin/location/state/del/'.$row['id']).'" onclick="return confirm(\'Do you want to delete ?\')"> <i class="fa fa-trash-o"></i></a>'
 			);
@@ -251,9 +251,9 @@ class Location extends MY_Controller
 			$status = ($row['status'] == 0)? 'Inactive': 'Active'.'<span>';
 			$data[]= array(
 				++$count,
-				get_state_name($row['state_id']),
 				$row['name'],
-				'<span class="btn btn-xs btn-success" title="status">'.$status.'<span>',				
+				get_state_name($row['state_id']),				
+				$status,
 				'<a title="Edit" class="update btn btn-sm btn-warning" href="'.base_url('admin/location/city/edit/'.$row['id']).'"> <i class="fa fa-pencil-square-o"></i></a>
 				<a title="Delete" class="delete btn btn-sm btn-danger" href="'.base_url('admin/location/city/del/'.$row['id']).'" onclick="return confirm(\'Do you want to delete ?\')"> <i class="fa fa-trash-o"></i></a>'
 			);

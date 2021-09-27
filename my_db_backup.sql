@@ -195,7 +195,7 @@ CREATE TABLE `ci_email_templates` (
   `slug` varchar(100) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `body` text NOT NULL,
-  `last_update` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_update` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
@@ -273,7 +273,7 @@ CREATE TABLE `ci_language` (
   `name` varchar(225) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `short_name` varchar(15) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -349,7 +349,7 @@ DROP TABLE IF EXISTS `ci_uploaded_files`;
 CREATE TABLE `ci_uploaded_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(225) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
 

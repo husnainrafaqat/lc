@@ -14,6 +14,7 @@
 				<?php $parent_module = $this->uri->segment(4); ?>
 				<div class="d-inline-block float-right">
 					<a href="<?= base_url('admin/admin_roles/module_form_field_add/'.$parent_module); ?>" class="btn btn-success"><i class="fa fa-plus"></i> Add New </a>
+					<a href="<?= base_url('admin/admin_roles/module_form_create_table/'.$parent_module); ?>" class="btn btn-success"><i class="fa fa-database"></i> Generate DB Table </a>
 				</div>
 			</div>
 
@@ -38,10 +39,10 @@
 								<td><?= trans($record['is_required']); ?></td>
 								<td><?= $record['sort_order']; ?></td>
 								<td>
-									<a href="<?php echo site_url("admin/admin_roles/module_field_edit/".$record['id']); ?>" class="btn btn-warning btn-sm mr5" >
+									<a href="<?php echo site_url("admin/admin_roles/module_form_field_edit/".$record['id']); ?>" class="btn btn-warning btn-sm mr5" >
 											<i class="fa fa-edit"></i>
 										</a>
-									<a href="<?php echo site_url("admin/admin_roles/module_field_delete/".$record['id']); ?>" onclick="return confirm('are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
+									<a href="<?php echo site_url("admin/admin_roles/module_form_field_delete/".$record['id']."/".$parent_module); ?>" onclick="return confirm('are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
 								</td>
 							</tr>
 						<?php endforeach; ?>

@@ -5,28 +5,22 @@
       <div class="card card-default color-palette-bo">
         <div class="card-header">
           <div class="d-inline-block">
-              <h3 class="card-title"> <i class="fa fa-plus"></i>
-              <?= trans('add_new_supplier') ?> </h3>
+              <h3 class="card-title"> <i class="fa fa-pencil"></i>
+              <?= trans('edit_admin') ?> </h3>
           </div>
+          <?php $parent_menu = $this->uri->segment(4); ?>
           <div class="d-inline-block float-right">
-            <a href="<?= base_url('admin/supplier'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('supplier_list') ?></a>
+            <a href="<?= base_url('admin/shipper'); ?>" class="btn btn-success"><i class="fa fa-list"></i> <?= trans('shipper_list') ?></a>
           </div>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="box">
-                <!-- form start -->
-                <div class="box-body">
-
-                  <!-- For Messages -->
-                  <?php $this->load->view('admin/includes/_messages.php') ?>
-
-                  <?php echo form_open(base_url('admin/supplier/add'), 'class="form-horizontal needs-validation" novalidate="novalidate"');  ?> 
-                  <div class="row">
-                    
+        <div class="card-body">   
+           <!-- For Messages -->
+            <?php $this->load->view('admin/includes/_messages.php') ?>
+              
+            <?php echo form_open(base_url('admin/shipper/edit/'.$shipper['id']), 'class="form-horizontal needs-validation" novalidate="novalidate"' )?> 
+            <div class="row">
                     <?php
-                          foreach($form_fields as $ff){
+                          foreach($form_fields as $ff){                            
                             $slug = make_slug_($ff['name']);
                             if($ff['is_required']==1){$req_star = '*';$req='required';}else{$req_star = '';$req='';}
                             if($ff['type']=='country'){
@@ -53,33 +47,33 @@
                           <?php
                             foreach($vals as $val){
                           ?>
-                          <option value="<?=$val['name']?>"><?=$val['name']?></option>
+                          <option <?php if($shipper[$slug]==$val['name']){echo "selected";} ?> value="<?=$val['name']?>"><?=$val['name']?></option>
                           <?php } ?>
                         </select>
                         <?php
                           }else if($ff['type']=='textarea'){
                         ?>
-                          <textarea name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>"></textarea>
+                          <textarea name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>"><?=$shipper[$slug]?></textarea>                          
                         <?php }else{ ?>
-                          <input type="<?=$ff['type']?>" name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>" placeholder="">
-                        <?php }?>
+                          <input type="<?=$ff['type']?>" name="<?=$slug?>" value="<?=$shipper[$slug]?>" class="form-control" <?=$req?> id="<?=$slug?>" placeholder="">
+                        <?php }?>  
                       </div>
                     </div>
-                    <?php } ?>
-                    
-                  </div> 
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <input type="submit" name="submit" value="<?= trans('add_supplier') ?>" class="btn btn-primary pull-right">
-                    </div>
+                    <?php        
+                          }
+                    ?>
+             </div> 
+               
+             
+                <div class="form-group">
+                  <div class="col-md-12">
+                    <input type="hidden" name="parent_module" value="<?= $parent_menu ?>">
+                    <input type="submit" name="submit" value="Update shipper" class="btn btn-primary pull-right">
                   </div>
-                  <?php echo form_close(); ?>
                 </div>
-                <!-- /.box-body -->
+                <?php echo form_close(); ?>
               </div>
+              <!-- /.box-body -->
             </div>
-          </div>  
-        </div>
-      </div>
-    </section> 
+    </section>
   </div>

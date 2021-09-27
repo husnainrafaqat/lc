@@ -10,9 +10,7 @@
         <h3 class="card-title"><i class="fa fa-list"></i>&nbsp; Cities List</h3>
       </div>
       <div class="d-inline-block float-right">
-        <?php if($this->rbac->check_operation_permission('city_add')): ?>
-          <a href="<?= base_url('admin/location/city/add'); ?>" class="btn btn-success"><i class="fa fa-plus"></i> Add New City</a>
-        <?php endif; ?>
+          <a href="<?= base_url('admin/location/city/add'); ?>" class="btn btn-success"><i class="fa fa-plus"></i> Add New City</a>       
       </div>
     </div>
     <div class="card-body">
@@ -20,8 +18,8 @@
         <thead>
         <tr>
           <th>No</th>
-          <th>State Name</th>
           <th>City Name</th>
+          <th>State Name</th>          
           <th>Status</th>
           <th style="width: 150px;" class="text-right">Action</th>
         </tr>
@@ -45,9 +43,9 @@
       "ajax": "<?=base_url('admin/location/city_datatable_json')?>",
       "order": [[1,'asc']],
       "columnDefs": [
-        { "targets": 0, "name": "", 'searchable':false, 'orderable':true},
-        { "targets": 1, "name": "state_id", 'searchable':true, 'orderable':true},
-        { "targets": 2, "name": "name", 'searchable':true, 'orderable':true},
+        { "targets": 0, "name": "", 'searchable':false, 'orderable':true},        
+        { "targets": 1, "name": "name", 'searchable':true, 'orderable':true},
+        { "targets": 2, "name": "state_id", 'searchable':true, 'orderable':true},
         { "targets": 3, "name": "status", 'searchable':true, 'orderable':true},
         { "targets": 4, "name": "action", 'searchable':false, 'orderable':false,'width':'100px'}
       ]

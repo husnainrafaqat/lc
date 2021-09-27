@@ -16,6 +16,34 @@
     }
 
     // -----------------------------------------------------------------------------
+    //get module id name
+    if (!function_exists('module_id')) {
+        function module_id($c_name)
+        {
+            // Get a reference to the controller object
+            $ci =& get_instance();
+            $ci->db->select('*');
+            $ci->db->where('controller_name',$c_name);
+            $result = $ci->db->get('module')->row_array();      
+            return $result['module_id'];            
+        }
+    }
+
+    // -----------------------------------------------------------------------------
+    //get module id name
+    if (!function_exists('module_name')) {
+        function module_name($id)
+        {
+            // Get a reference to the controller object
+            $ci =& get_instance();
+            $ci->db->select('*');
+            $ci->db->where('module_id',$id);
+            $result = $ci->db->get('module')->row_array();      
+            return $result['controller_name'];            
+        }
+    }
+
+    // -----------------------------------------------------------------------------
     //get role id
     if (!function_exists('role_id')) {
         function role_id()
@@ -101,7 +129,7 @@
         }
     }
 
-     // -----------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------
     // Make Slug Function    
     if (!function_exists('make_slug'))
     {
@@ -110,6 +138,18 @@
             $lower_case_string = strtolower($string);
             $string1 = preg_replace('/[^a-zA-Z0-9 ]/s', '', $lower_case_string);
             return strtolower(preg_replace('/\s+/', '-', $string1));        
+        }
+    }
+
+    // -----------------------------------------------------------------------------
+    // Make Slug Function    
+    if (!function_exists('make_slug_'))
+    {
+        function make_slug_($string)
+        {
+            $lower_case_string = strtolower($string);
+            $string1 = preg_replace('/[^a-zA-Z0-9 ]/s', '', $lower_case_string);
+            return strtolower(preg_replace('/\s+/', '_', $string1));        
         }
     }
 
@@ -187,5 +227,78 @@
         $iv = substr( hash( 'sha256', $secret_iv ), 0, 16);
         return openssl_decrypt( base64_decode( $data ), $encrypt_method, $key, 0, $iv );	
     }
+
+    //-----------------------------------------------------
+	function get_form_fields($id)
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_module_form');
+		$ci->db->order_by('sort_order','asc');
+		$ci->db->where('module_id',$id);
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+	//-----------------------------------------------------
+	function get_req_fields($id)
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_module_form');
+		$ci->db->where('module_id',$id);
+		$ci->db->where('is_required','1');
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+
+    //-----------------------------------------------------
+	function get_countries()
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_countries');
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+
+    //-----------------------------------------------------
+	function get_states()
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_states');
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+
+    //-----------------------------------------------------
+	function get_cities()
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_cities');
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
 
 ?>

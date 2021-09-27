@@ -11,13 +11,11 @@
           <h3 class="card-title"><i class="fa fa-list"></i>&nbsp; Countries List</h3>
         </div>
         <div class="d-inline-block float-right">
-          <?php if($this->rbac->check_operation_permission('country_add')): ?>
-            <a href="<?= base_url('admin/location/country/add'); ?>" class="btn btn-success"><i class="fa fa-plus"></i> Add New Country</a>
-          <?php endif; ?>
+            <a href="<?= base_url('admin/location/country/add'); ?>" class="btn btn-success"><i class="fa fa-plus"></i> Add New Country</a>          
         </div>
       </div>
       <div class="card-body">
-        <table id="na_datatable" class="table table-bordered table-striped ">
+        <table id="na_datatable" class="table table-bordered table-striped table-sm">
           <thead>
           <tr>
             <th>No</th>

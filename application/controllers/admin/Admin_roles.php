@@ -389,7 +389,7 @@ class Admin_roles extends MY_Controller
 				$result = $this->admin_roles->add_form_field($data);
 				if($result){
 					$this->session->set_flashdata('success', 'Field has been added successfully!');
-					redirect(base_url('admin/admin_roles/module_form/'.$parent));
+					redirect(base_url('admin/admin_roles/module_form_field_add/'.$parent));
 				}
 			}
 		}
@@ -403,58 +403,71 @@ class Admin_roles extends MY_Controller
 	}
 
 	// -----------------------------------------------------------
-	public function module_form_edit($id = 0){
+	public function module_form_field_edit($id = 0){
 
 		$this->rbac->check_operation_access(); // check opration permission
-
+		
 		if($this->input->post('submit')){
-			$this->form_validation->set_rules('module_name', 'module Name', 'trim|required');
-			$this->form_validation->set_rules('sub_module_name', 'sub_module Name', 'trim|required');
-			$this->form_validation->set_rules('operation', 'Operation', 'trim');
+			$this->form_validation->set_rules('field_name', 'Field Name', 'trim|required');
+			$this->form_validation->set_rules('field_type', 'Field Type', 'trim');
+			$this->form_validation->set_rules('is_required', 'Required', 'trim');
 			$this->form_validation->set_rules('sort_order', 'Sort Order', 'trim');
-
+			$this->form_validation->set_rules('parent_module', 'Parent Module', 'trim|required');
+			// Parent Module
+			$field_id = $this->input->post('parent_module');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array(
 					'errors' => validation_errors()
 				);
 				$this->session->set_flashdata('errors', $data['errors']);
-				redirect(base_url('admin/admin_roles/sub_module_edit/'.$id),'refresh');
+				redirect(base_url('admin/admin_roles/module_form_field_edit/'.$field_id),'refresh');
 			}
 			else{
-				$parent = $this->input->post('module_name');
-
 				$data = array(
-					'parent' => $parent,
-					'name' => $this->input->post('sub_module_name'),
-					'link' => $this->input->post('operation'),
+					'name' => $this->input->post('field_name'),
+					'type' => $this->input->post('field_type'),
+					'is_required' => $this->input->post('is_required'),
 					'sort_order' => $this->input->post('sort_order'),
 				);
 				$data = $this->security->xss_clean($data);
-				$result = $this->admin_roles->edit_sub_module($data, $id);
+				$result = $this->admin_roles->edit_form_field($data, $field_id);
 				if($result){
-					$this->session->set_flashdata('success', 'sub module has been Updated successfully!');
-					redirect(base_url('admin/admin_roles/sub_module/'.$parent));
+					$this->session->set_flashdata('success', 'Field has been Updated successfully!');
+					redirect(base_url('admin/admin_roles/module_form_field_edit/'.$field_id));
 				}
 			}
 		}
 		else{
-			$data['title'] = '';
-			$data['module'] = $this->admin_roles->get_sub_module_by_id($id);
+			$field_id = $this->uri->segment(4);			
+			$data['title'] = 'Edit Field';
+			$data['field_type'] = $this->admin_roles->get_module_field_type();
+			$data['field_date'] = $this->admin_roles->get_module_field_data($field_id);
 			$this->load->view('admin/includes/_header');
-			$this->load->view('admin/admin_roles/sub_module_edit', $data);
+			$this->load->view('admin/admin_roles/module_form_field_edit', $data);
 			$this->load->view('admin/includes/_footer');
 		}
 	}
 
 	// ------------------------------------------------------------
-	public function module_form_delete($id = 0,$parent = 0){
+	public function module_form_field_delete($id = 0,$parent = 0){
 
 		$this->rbac->check_operation_access(); // check opration permission
 
-		$this->admin_roles->delete_sub_module($id);
+		$this->admin_roles->delete_form_field($id);
 
-		$this->session->set_flashdata('msg','Sub Menu has been Deleted Successfully.');	
-		redirect('admin/admin_roles/sub_module/'.$parent);
+		$this->session->set_flashdata('msg','Form Field has been Deleted Successfully.');	
+		redirect('admin/admin_roles/module_form/'.$parent);
+	}
+
+	// ------------------------------------------------------------
+	public function module_form_create_table($id = 0){
+		$parent_menu = $this->uri->segment(4);
+		if($this->admin_roles->create_table($parent_menu)){
+			$this->session->set_flashdata('success','Table has been Deleted Successfully.');	
+		}else{
+			$this->session->set_flashdata('errors','Table not created try again.');	
+		}		
+		redirect('admin/admin_roles/module_form/'.$parent_menu);
 	}
 
 	

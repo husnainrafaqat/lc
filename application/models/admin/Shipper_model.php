@@ -1,21 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supplier_model extends CI_Model{
+class Shipper_model extends CI_Model{
 
-	public function get_supplier_detail($id){
-		$query = $this->db->get_where('supplier', array('id' => $id));
+	public function get_shipper_detail($id){
+		$query = $this->db->get_where('shipper', array('id' => $id));
 		return $result = $query->row_array();
 	}
 	//--------------------------------------------------------------------
-	public function update_supplier($data,$id){
+	public function update_shipper($data,$id){
 		$this->db->where('id', $id);
-		$this->db->update('supplier', $data);
+		$this->db->update('shipper', $data);
 		return true;
 	}
 	//-----------------------------------------------------
-	function get_supplier_by_id($id)
+	function get_shipper_by_id($id)
 	{
-		$this->db->from('supplier');
+		$this->db->from('shipper');
 		$this->db->where('id',$id);
 		$query=$this->db->get();
 		return $query->row_array();
@@ -25,10 +25,10 @@ class Supplier_model extends CI_Model{
 	function get_all()
 	{
 
-		$this->db->from('supplier');
-		//$this->db->where('supplier.status',"A");
+		$this->db->from('shipper');
+		//$this->db->where('shipper.status',"A");
 
-		$this->db->order_by('supplier.id','desc');
+		$this->db->order_by('shipper.id','desc');
 
 		$query = $this->db->get();
 
@@ -43,16 +43,16 @@ class Supplier_model extends CI_Model{
 	}
 
 	//-----------------------------------------------------
-	public function add_supplier($data){
-		$this->db->insert('supplier', $data);
+	public function add_shipper($data){
+		$this->db->insert('shipper', $data);
 		return true;
 	}
 
 	//---------------------------------------------------
 	// Edit Admin Record
-	public function edit_supplier($data, $id){
+	public function edit_shipper($data, $id){
 		$this->db->where('id', $id);
-		$this->db->update('supplier', $data);
+		$this->db->update('shipper', $data);
 		return true;
 	}
 
@@ -61,14 +61,14 @@ class Supplier_model extends CI_Model{
 	{		
 		$this->db->set('status',$this->input->post('status'));
 		$this->db->where('id',$this->input->post('id'));
-		$this->db->update('supplier');
+		$this->db->update('shipper');
 } 
 
 	//-----------------------------------------------------
 	function delete($id)
 	{		
 		$this->db->where('id',$id);
-		$this->db->delete('supplier');
+		$this->db->delete('shipper');
 	} 
 	
 

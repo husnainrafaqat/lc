@@ -28,10 +28,10 @@
               ?>              
               
               <td>
-                <a href="<?= base_url("admin/supplier/edit/".encrypt_data($row['id'])); ?>" class="btn btn-warning btn-sm mr5" >
+                <a href="<?= base_url("admin/shipper/edit/".encrypt_data($row['id'])); ?>" class="btn btn-warning btn-sm mr5" >
                 <i class="fa fa-edit"></i>
                 </a>
-                <a href="<?= base_url("admin/supplier/delete/".encrypt_data($row['id'])); ?>" onclick="return confirm('are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
+                <a href="<?= base_url("admin/shipper/delete/".encrypt_data($row['id'])); ?>" onclick="return confirm('are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
               </td>
             </tr>
             <?php endforeach;?>
