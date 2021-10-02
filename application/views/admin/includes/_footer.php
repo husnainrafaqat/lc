@@ -122,7 +122,12 @@ $(document).on('change','.state',function()
   });
     });
   });
-
+  $(window).on('load', function() {
+    $('#status').fadeOut();
+    $('#preloader').delay(10).fadeOut('fast');
+    $('body').delay(
+    50).css({'overflow':'visible'});
+  });
   (function() {
   'use strict';
   window.addEventListener('load', function() {

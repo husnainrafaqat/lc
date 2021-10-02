@@ -16,6 +16,56 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`lc` /*!40100 DEFAULT CHARACTER SET lati
 
 USE `lc`;
 
+/*Table structure for table `agent` */
+
+DROP TABLE IF EXISTS `agent`;
+
+CREATE TABLE `agent` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `agent_name` varchar(255) NOT NULL,
+  `agent_branch_address` text NOT NULL,
+  `agent_country` varchar(255) NOT NULL,
+  `agent_state` varchar(255) NOT NULL,
+  `agent_city` varchar(255) NOT NULL,
+  `agent_contact_person_name` varchar(255) NOT NULL,
+  `agent_contact_person_phone` varchar(255) NOT NULL,
+  `agent_business_start_date` datetime NOT NULL,
+  `agent_business_end_date` datetime NOT NULL,
+  `agent_score` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `agent` */
+
+/*Table structure for table `bank` */
+
+DROP TABLE IF EXISTS `bank`;
+
+CREATE TABLE `bank` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `bank_name` varchar(255) NOT NULL,
+  `bank_branch_address` text NOT NULL,
+  `bank_country` varchar(255) NOT NULL,
+  `bank_state` varchar(255) NOT NULL,
+  `bank_city` varchar(255) NOT NULL,
+  `bank_contact_person_name` varchar(255) NOT NULL,
+  `bank_contact_person_phone` varchar(255) NOT NULL,
+  `bank_business_start_date` datetime NOT NULL,
+  `bank_business_end_date` datetime NOT NULL,
+  `bank_score` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `bank` */
+
 /*Table structure for table `ci_activity_log` */
 
 DROP TABLE IF EXISTS `ci_activity_log`;
@@ -154,6 +204,25 @@ CREATE TABLE `ci_countries` (
 
 insert  into `ci_countries`(`id`,`sortname`,`name`,`slug`,`phonecode`,`status`) values (1,'PK','Pakistan','pakistan',92,1),(2,'','United States of America','united-states-of-america',0,1);
 
+/*Table structure for table `ci_dropdown_vals` */
+
+DROP TABLE IF EXISTS `ci_dropdown_vals`;
+
+CREATE TABLE `ci_dropdown_vals` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module_form_id` int(11) DEFAULT NULL,
+  `value` text,
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+
+/*Data for the table `ci_dropdown_vals` */
+
+insert  into `ci_dropdown_vals`(`id`,`module_form_id`,`value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (40,63,'Local,Internal','1','2021-09-28 05:09:43','1','2021-09-28 06:09:27'),(44,67,'Transportation,Duty,Tax,IncomeTax,FumigationCharges,Wharfage,Insurance,ClearingAgent,SalesTax,OtherExpClearningAgent,LocalFreight,ControllingCharges,Import','1','2021-09-28 06:09:33',NULL,NULL);
+
 /*Table structure for table `ci_email_template_variables` */
 
 DROP TABLE IF EXISTS `ci_email_template_variables`;
@@ -235,7 +304,7 @@ CREATE TABLE `ci_general_settings` (
 
 /*Data for the table `ci_general_settings` */
 
-insert  into `ci_general_settings`(`id`,`favicon`,`logo`,`application_name`,`timezone`,`currency`,`default_language`,`copyright`,`email_from`,`smtp_host`,`smtp_port`,`smtp_user`,`smtp_pass`,`facebook_link`,`twitter_link`,`google_link`,`youtube_link`,`linkedin_link`,`instagram_link`,`recaptcha_secret_key`,`recaptcha_site_key`,`recaptcha_lang`,`created_date`,`updated_date`) values (1,'','','LC','Asia/Karachi','PKR',2,'Copyright Â© 2021 All rights reserved.','','',0,'','','https://facebook.com','https://twitter.com','https://google.com','https://youtube.com','https://linkedin.com','https://instagram.com','','','en','2021-09-24 00:00:00','2021-09-24 00:00:00');
+insert  into `ci_general_settings`(`id`,`favicon`,`logo`,`application_name`,`timezone`,`currency`,`default_language`,`copyright`,`email_from`,`smtp_host`,`smtp_port`,`smtp_user`,`smtp_pass`,`facebook_link`,`twitter_link`,`google_link`,`youtube_link`,`linkedin_link`,`instagram_link`,`recaptcha_secret_key`,`recaptcha_site_key`,`recaptcha_lang`,`created_date`,`updated_date`) values (1,'','','LC','Asia/Karachi','PKR',2,'Copyright © 2021 All rights reserved.','','',0,'','','https://facebook.com','https://twitter.com','https://google.com','https://youtube.com','https://linkedin.com','https://instagram.com','','','en','2021-09-28 01:09:47','2021-09-28 01:09:47');
 
 /*Table structure for table `ci_language` */
 
@@ -265,12 +334,13 @@ CREATE TABLE `ci_module_form` (
   `type` varchar(255) NOT NULL,
   `is_required` int(11) NOT NULL,
   `sort_order` int(11) NOT NULL,
+  `show_on_datatable` varchar(3) DEFAULT 'Yes',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `ci_module_form` */
 
-insert  into `ci_module_form`(`id`,`module_id`,`name`,`type`,`is_required`,`sort_order`) values (1,34,'Supplier Id','number',1,1),(2,34,'Supplier Name','text',0,2),(5,34,'Supplier Address','textarea',0,3),(6,34,'Owner Name','text',0,7),(7,34,'Owner Email Address','email',0,8),(8,34,'Owner Phone Number','text',1,9),(9,34,'Supplier Country','country',0,4),(10,34,'Supplier State','state',0,5),(11,34,'Supplier City','city',0,6),(13,35,'Shipper ID','text',1,1),(14,35,'Shipper Name','text',0,2),(15,35,'Shipper Address','textarea',0,3),(16,35,'Shipper City','city',0,6),(17,35,'Shipper Country','country',0,4),(18,35,'Shipper State','state',0,5),(19,35,'Shipper Email Address','email',0,7),(20,35,'Shipper Phone Number','phone',1,8);
+insert  into `ci_module_form`(`id`,`module_id`,`name`,`type`,`is_required`,`sort_order`,`show_on_datatable`) values (2,34,'Supplier Name','text',0,2,'Yes'),(5,34,'Supplier Address','textarea',0,3,'Yes'),(6,34,'Owner Name','text',0,7,'Yes'),(7,34,'Owner Email Address','email',0,8,'Yes'),(8,34,'Owner Phone Number','text',1,9,'Yes'),(9,34,'Supplier Country','country',0,4,'No'),(10,34,'Supplier State','state',0,5,'No'),(11,34,'Supplier City','city',0,6,'Yes'),(14,35,'Shipper Name','text',0,2,'Yes'),(15,35,'Shipper Address','textarea',0,3,'Yes'),(16,35,'Shipper City','city',0,6,'Yes'),(17,35,'Shipper Country','country',0,4,'No'),(18,35,'Shipper State','state',0,5,'No'),(19,35,'Shipper Email Address','email',0,7,'Yes'),(20,35,'Shipper Phone Number','phone',1,8,'Yes'),(25,36,'Transporter Name','text',0,2,'Yes'),(26,36,'Transporter Address','textarea',0,3,'Yes'),(27,36,'Transporter City','city',0,6,'Yes'),(28,36,'Transporter Country','country',0,4,'No'),(29,36,'Transporter State','state',0,5,'No'),(30,36,'Transporter Email Address','email',0,7,'Yes'),(31,36,'Transporter Phone Number','text',2,8,'Yes'),(32,36,'Transporter Score','text',1,9,'Yes'),(34,37,'Insurance Company Name','text',0,2,'Yes'),(35,37,'Company Address','textarea',0,3,'Yes'),(36,37,'Company Country','country',0,4,'No'),(37,37,'Company State','state',0,5,'No'),(38,37,'Company City','city',0,6,'Yes'),(39,37,'Company Email Address','email',0,7,'Yes'),(40,37,'Company Phone Number','text',1,8,'Yes'),(41,37,'Company Score','number',1,9,'Yes'),(42,38,'Bank Name','text',0,1,'Yes'),(43,38,'Bank Branch Address','textarea',0,2,'Yes'),(44,38,'Bank Country','country',0,3,'No'),(45,38,'Bank State','state',0,4,'No'),(46,38,'Bank City','city',0,5,'Yes'),(47,38,'Bank Contact Person Name','text',0,6,'No'),(48,38,'Bank Contact Person Phone','text',1,7,'Yes'),(49,38,'Bank Business Start Date','date',1,8,'Yes'),(50,38,'Bank Business End Date','date',1,8,'Yes'),(51,38,'Bank Score','text',1,9,'Yes'),(52,39,'Agent Name','text',0,1,'Yes'),(53,39,'Agent Branch Address','textarea',0,2,'Yes'),(54,39,'Agent Country','country',0,3,'No'),(55,39,'Agent State','state',0,4,'No'),(56,39,'Agent City','city',0,5,'Yes'),(57,39,'Agent Contact Person Name','text',0,6,'No'),(58,39,'Agent Contact Person Phone','text',1,7,'Yes'),(59,39,'Agent Business Start Date','date',1,8,'Yes'),(60,39,'Agent Business End Date','date',1,9,'Yes'),(61,39,'Agent Score','text',1,10,'Yes'),(62,40,'Expanse Name','text',0,1,'Yes'),(63,40,'Expanse Flag','select',0,2,'Yes'),(64,40,'Expanse Country','country',0,3,'No'),(65,40,'Expanse State','state',0,4,'No'),(66,40,'Expanse City','city',1,5,'Yes'),(67,40,'Expanse Category','select',0,7,'Yes'),(68,41,'Contract Number','text',0,1,'Yes'),(69,41,'Contract Name','text',0,2,'Yes'),(70,41,'Contract Created Country','country',0,3,'No'),(71,41,'Contract Created State','state',0,4,'No'),(72,41,'Contract Created City','city',0,5,'Yes'),(73,41,'Goods ID','text',0,6,'Yes'),(74,41,'HS Code','text',0,7,'Yes'),(75,41,'Rate (Non Fixed Contract Rate)','text',0,8,'Yes'),(76,41,'Fixed Contract Date','date',0,9,'Yes'),(77,41,'Contract Fixed Rate','text',0,10,'Yes'),(78,41,'On Value Percentage','text',0,11,'Yes');
 
 /*Table structure for table `ci_payments` */
 
@@ -364,6 +434,75 @@ CREATE TABLE `ci_users_old` (
 
 insert  into `ci_users_old`(`id`,`username`,`firstname`,`lastname`,`email`,`mobile_no`,`password`,`address`,`role`,`is_active`,`is_verify`,`is_admin`,`token`,`password_reset_code`,`last_ip`,`created_at`,`updated_at`) values (3,'admin','admin','admin','admin@admin.com','12345','$2y$10$qlAzDhBEqkKwP3OykqA7N.ZQk6T67fxD9RHfdv3zToxa9Mtwu9C/e','27 new jersey - Level 58 - CA 444 \r\nUnited State ',1,1,1,1,'','','','2017-09-29 10:09:44','2017-12-14 10:12:41'),(32,'user','user','user','user@user.com','44897866462','$2y$10$sU5msVdifYie7cZbCEnyku6hLH8Sef0VCHqO9UIOg6rsBsDtsLcyS','',1,1,1,0,'352fe25daf686bdb4edca223c921acea','','','2018-04-24 07:04:07','2019-01-26 03:01:30'),(33,'john123','john','smith','johnsmith@gmail.com','445889654656','$2y$10$qlAzDhBEqkKwP3OykqA7N.ZQk6T67fxD9RHfdv3zToxa9Mtwu9C/e','USA',7,1,1,0,'','','','2018-04-25 06:04:25','2019-01-24 04:01:33'),(38,'john','smith','johan','johnsmith@gmail.com','123456','$2y$10$5wXvKkhMTEatZ7aUHE/RU.lQbeXdURME8Br9Noxn802epBPoFz7wu','asdfdasfdsfds',1,1,0,0,'','','','2019-07-15 09:07:24','2019-07-15 09:07:24'),(39,'techesprit','zain','khan','zain@gmail.com','03004596000','$2y$10$F14///ug4J6WNd0selNJguZ2ib4ugER8u4n09Z787nz2g6j4gJZva','111asdfasd',1,1,0,0,'','','','2019-11-25 00:00:00','2019-11-25 00:00:00'),(40,'techesprit','zain','khan','zain@gmail.com','03004596000','$2y$10$UbljVrMhHmqRYhJBumzmVOfXYmaOeZRMAEkBn0uF68Nj3VL4ACiHC','111asdfasd',1,1,0,0,'','','','2019-11-25 00:00:00','2019-11-25 00:00:00'),(41,'husnain','Hus','Raf','husnain.dev1@gmail.com','12345','$2y$10$DRhyvfPCiOZAldVHEdpHuOh84Ro/VIaqIksPwaz.KLwB/54DllKkC','Test',1,1,1,0,'','','','2021-07-14 00:00:00','2021-07-14 00:00:00');
 
+/*Table structure for table `contract` */
+
+DROP TABLE IF EXISTS `contract`;
+
+CREATE TABLE `contract` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `contract_number` varchar(255) NOT NULL,
+  `contract_name` varchar(255) NOT NULL,
+  `contract_created_country` varchar(255) NOT NULL,
+  `contract_created_state` varchar(255) NOT NULL,
+  `contract_created_city` varchar(255) NOT NULL,
+  `goods_id` varchar(255) NOT NULL,
+  `hs_code` varchar(255) NOT NULL,
+  `rate_non_fixed_contract_rate` varchar(255) NOT NULL,
+  `fixed_contract_date` datetime NOT NULL,
+  `contract_fixed_rate` varchar(255) NOT NULL,
+  `on_value_percentage` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `contract` */
+
+/*Table structure for table `insurance_company` */
+
+DROP TABLE IF EXISTS `insurance_company`;
+
+CREATE TABLE `insurance_company` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `insurance_company_name` varchar(255) NOT NULL,
+  `company_address` text NOT NULL,
+  `company_country` varchar(255) NOT NULL,
+  `company_state` varchar(255) NOT NULL,
+  `company_city` varchar(255) NOT NULL,
+  `company_email_address` varchar(255) NOT NULL,
+  `company_phone_number` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `insurance_company` */
+
+/*Table structure for table `lc_expanses` */
+
+DROP TABLE IF EXISTS `lc_expanses`;
+
+CREATE TABLE `lc_expanses` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `expanse_name` varchar(255) NOT NULL,
+  `expanse_flag` varchar(255) NOT NULL,
+  `expanse_country` varchar(255) NOT NULL,
+  `expanse_state` varchar(255) NOT NULL,
+  `expanse_city` varchar(255) NOT NULL,
+  `expanse_category` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `lc_expanses` */
+
 /*Table structure for table `module` */
 
 DROP TABLE IF EXISTS `module`;
@@ -377,11 +516,11 @@ CREATE TABLE `module` (
   `sort_order` tinyint(4) NOT NULL,
   `status` enum('A','D') DEFAULT 'A',
   PRIMARY KEY (`module_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*Data for the table `module` */
 
-insert  into `module`(`module_id`,`module_name`,`controller_name`,`fa_icon`,`operation`,`sort_order`,`status`) values (1,'users','admin','fa-users','view|add|edit|delete|change_status|access',3,'A'),(2,'role_and_permissions','admin_roles','fa-book','view|add|edit|delete|change_status|access',4,'A'),(3,'users2','users','fa-users','view|add|edit|delete|change_status|access',4,'D'),(7,'backup_and_export','export','fa-database','access',12,'A'),(8,'settings','general_settings','fa-cogs','view|add|edit|access',13,'A'),(9,'dashboard','dashboard','fa-dashboard','view|index_2|index_3|access',1,'A'),(10,'codeigniter_examples','example','fa-snowflake-o','access',6,'D'),(11,'invoicing_system','invoices','fa-files-o','access',9,'D'),(12,'database_joins_example','joins','fa-external-link-square','access',7,'D'),(13,'language_setting','languages','fa-language','access',14,'D'),(14,'locations','location','fa-map-pin','access',11,'A'),(15,'widgets','widgets','fa-th','access',19,'D'),(16,'charts','charts','fa-line-chart','access',17,'D'),(17,'ui_elements','ui','fa-tree','access',18,'D'),(18,'forms','forms','fa-edit','access',20,'D'),(19,'tables','tables','fa-table','access',21,'D'),(21,'mailbox','mailbox','fa-envelope-o','access',23,'D'),(22,'pages','pages','fa-book','access',24,'D'),(23,'extras','extras','fa-plus-square-o','access',25,'D'),(25,'profile','profile','fa-user','access',2,'A'),(26,'activity_log','activity','fa-flag-o','access',11,'A'),(34,'Supplier','supplier','fa fa-list','add|edit|delete|access',5,'A'),(35,'Shipper','shipper','fa fa-list','add|edit|delete|access',6,'A');
+insert  into `module`(`module_id`,`module_name`,`controller_name`,`fa_icon`,`operation`,`sort_order`,`status`) values (1,'users','admin','fa-users','view|add|edit|delete|change_status|access',3,'A'),(2,'role_and_permissions','admin_roles','fa-book','view|add|edit|delete|change_status|access',4,'A'),(3,'users2','users','fa-users','view|add|edit|delete|change_status|access',4,'D'),(7,'backup_and_export','export','fa-database','access',12,'A'),(8,'settings','general_settings','fa-cogs','view|add|edit|access',13,'A'),(9,'dashboard','dashboard','fa-dashboard','view|index_2|index_3|access',1,'A'),(10,'codeigniter_examples','example','fa-snowflake-o','access',6,'D'),(11,'invoicing_system','invoices','fa-files-o','access',9,'D'),(12,'database_joins_example','joins','fa-external-link-square','access',7,'D'),(13,'language_setting','languages','fa-language','access',14,'D'),(14,'locations','location','fa-map-pin','access',11,'A'),(15,'widgets','widgets','fa-th','access',19,'D'),(16,'charts','charts','fa-line-chart','access',17,'D'),(17,'ui_elements','ui','fa-tree','access',18,'D'),(18,'forms','forms','fa-edit','access',20,'D'),(19,'tables','tables','fa-table','access',21,'D'),(21,'mailbox','mailbox','fa-envelope-o','access',23,'D'),(22,'pages','pages','fa-book','access',24,'D'),(23,'extras','extras','fa-plus-square-o','access',25,'D'),(25,'profile','profile','fa-user','access',2,'A'),(26,'activity_log','activity','fa-flag-o','access',11,'A'),(34,'Supplier','supplier','fa fa-list','add|edit|delete|access',5,'A'),(35,'Shipper','shipper','fa fa-list','add|edit|delete|access',6,'A'),(36,'Transporter','transporter','fa fa-list','add|edit|delete|access',7,'A'),(37,'Insurance Company','insurance_company','fa fa-list','add|edit|delete|access',8,'A'),(38,'Bank','bank','fa fa-list','add|edit|delete|access',9,'A'),(39,'Agent','agent','fa fa-list','add|edit|delete|access',5,'A'),(40,'LC Expanses','lc_expanses','fa fa-list','add|edit|delete|access',9,'A'),(41,'Contract','contract','fa fa-list','add|edit|delete|access',9,'A');
 
 /*Table structure for table `module_access` */
 
@@ -407,7 +546,6 @@ DROP TABLE IF EXISTS `shipper`;
 
 CREATE TABLE `shipper` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `shipper_id` varchar(255) NOT NULL,
   `shipper_name` varchar(255) NOT NULL,
   `shipper_address` text NOT NULL,
   `shipper_country` varchar(255) NOT NULL,
@@ -424,7 +562,7 @@ CREATE TABLE `shipper` (
 
 /*Data for the table `shipper` */
 
-insert  into `shipper`(`id`,`shipper_id`,`shipper_name`,`shipper_address`,`shipper_country`,`shipper_state`,`shipper_city`,`shipper_email_address`,`shipper_phone_number`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'123','Test','Test address','Pakistan','Islamabad','Islamabad','test@shipper.com','123','1','2021-09-27 05:09:04','','0000-00-00 00:00:00');
+insert  into `shipper`(`id`,`shipper_name`,`shipper_address`,`shipper_country`,`shipper_state`,`shipper_city`,`shipper_email_address`,`shipper_phone_number`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'Test','Test address','Pakistan','Islamabad','Islamabad','test@shipper.com','123','1','2021-09-27 05:09:04','','0000-00-00 00:00:00');
 
 /*Table structure for table `sub_module` */
 
@@ -439,11 +577,11 @@ CREATE TABLE `sub_module` (
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   PRIMARY KEY (`id`),
   KEY `Parent Module ID` (`parent`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sub_module` */
 
-insert  into `sub_module`(`id`,`parent`,`name`,`link`,`sort_order`,`status`) values (2,2,'module_setting','module',1,'active'),(3,2,'role_and_permissions','',2,'active'),(4,1,'add_new_user','add',2,'active'),(6,1,'users_list','',1,'active'),(26,9,'dashboard_v1','',1,'inactive'),(27,9,'dashboard_v2','index_2',2,'inactive'),(28,9,'dashboard_v3','index_3',3,'inactive'),(30,3,'users2_list','',1,'active'),(31,3,'add_new_user2','add',2,'active'),(32,10,'simple_datatable','simple_datatable',1,'active'),(33,10,'ajax_datatable','ajax_datatable',2,'active'),(34,10,'pagination','pagination',3,'active'),(35,10,'advance_search','advance_search',4,'active'),(36,10,'file_upload','file_upload',5,'active'),(37,11,'invoice_list','',1,'active'),(38,11,'add_new_invoice','add',2,'active'),(39,12,'serverside_join','',1,'active'),(40,12,'simple_join','simple',2,'active'),(41,14,'country','',1,'active'),(42,14,'state','state',2,'active'),(43,14,'city','city',3,'active'),(44,16,'charts_js','chartjs',1,'active'),(45,16,'charts_flot','flot',2,'active'),(46,16,'charts_inline','inline',3,'active'),(47,17,'general','general',1,'active'),(48,17,'icons','icons',2,'active'),(49,17,'buttons','buttons',3,'active'),(50,18,'general_elements','general',1,'active'),(51,18,'advanced_elements','advanced',2,'active'),(52,18,'editors','editors',3,'active'),(53,19,'simple_tables','simple',1,'active'),(54,19,'data_tables','data',2,'active'),(55,21,'inbox','inbox',1,'active'),(56,21,'compose','compose',2,'active'),(57,21,'read','read_mail',3,'active'),(58,22,'invoice','invoice',1,'active'),(59,22,'profile','profile',2,'active'),(60,22,'login','login',3,'active'),(61,22,'register','register',4,'active'),(62,22,'lock_screen','Lockscreen',4,'active'),(63,23,'error_404','error404',1,'active'),(64,23,'error_500','error500',2,'active'),(65,23,'blank_page','blank',3,'active'),(66,23,'starter_page','starter',4,'active'),(67,8,'general_settings','',1,'active'),(68,8,'email_template_settings','email_templates',2,'active'),(69,25,'view_profile','',1,'active'),(70,25,'change_password','change_pwd',2,'active'),(71,10,'multiple_files_upload','multi_file_upload',6,'active'),(72,10,'dynamic_charts','charts',7,'active'),(73,10,'locations','locations',8,'active'),(88,34,'Add Supplier','add',1,'active'),(89,34,'List Supplier','',2,'active'),(90,35,'Add Shipper','add',1,'active'),(91,35,'List Shipper','',2,'active');
+insert  into `sub_module`(`id`,`parent`,`name`,`link`,`sort_order`,`status`) values (2,2,'module_setting','module',1,'active'),(3,2,'role_and_permissions','',2,'active'),(4,1,'add_new_user','add',2,'active'),(6,1,'users_list','',1,'active'),(26,9,'dashboard_v1','',1,'inactive'),(27,9,'dashboard_v2','index_2',2,'inactive'),(28,9,'dashboard_v3','index_3',3,'inactive'),(30,3,'users2_list','',1,'active'),(31,3,'add_new_user2','add',2,'active'),(32,10,'simple_datatable','simple_datatable',1,'active'),(33,10,'ajax_datatable','ajax_datatable',2,'active'),(34,10,'pagination','pagination',3,'active'),(35,10,'advance_search','advance_search',4,'active'),(36,10,'file_upload','file_upload',5,'active'),(37,11,'invoice_list','',1,'active'),(38,11,'add_new_invoice','add',2,'active'),(39,12,'serverside_join','',1,'active'),(40,12,'simple_join','simple',2,'active'),(41,14,'country','',1,'active'),(42,14,'state','state',2,'active'),(43,14,'city','city',3,'active'),(44,16,'charts_js','chartjs',1,'active'),(45,16,'charts_flot','flot',2,'active'),(46,16,'charts_inline','inline',3,'active'),(47,17,'general','general',1,'active'),(48,17,'icons','icons',2,'active'),(49,17,'buttons','buttons',3,'active'),(50,18,'general_elements','general',1,'active'),(51,18,'advanced_elements','advanced',2,'active'),(52,18,'editors','editors',3,'active'),(53,19,'simple_tables','simple',1,'active'),(54,19,'data_tables','data',2,'active'),(55,21,'inbox','inbox',1,'active'),(56,21,'compose','compose',2,'active'),(57,21,'read','read_mail',3,'active'),(58,22,'invoice','invoice',1,'active'),(59,22,'profile','profile',2,'active'),(60,22,'login','login',3,'active'),(61,22,'register','register',4,'active'),(62,22,'lock_screen','Lockscreen',4,'active'),(63,23,'error_404','error404',1,'active'),(64,23,'error_500','error500',2,'active'),(65,23,'blank_page','blank',3,'active'),(66,23,'starter_page','starter',4,'active'),(67,8,'general_settings','',1,'active'),(68,8,'email_template_settings','email_templates',2,'active'),(69,25,'view_profile','',1,'active'),(70,25,'change_password','change_pwd',2,'active'),(71,10,'multiple_files_upload','multi_file_upload',6,'active'),(72,10,'dynamic_charts','charts',7,'active'),(73,10,'locations','locations',8,'active'),(88,34,'Add Supplier','add',1,'active'),(89,34,'List Supplier','',2,'active'),(90,35,'Add Shipper','add',1,'active'),(91,35,'List Shipper','',2,'active'),(92,36,'Add Transporter','add',1,'active'),(93,36,'List Transporter','',2,'active'),(94,37,'Add Insurance Company','add',1,'active'),(95,37,'List Insurance Company','',2,'active'),(96,38,'Add Bank','add',1,'active'),(97,38,'List Bank','',2,'active'),(98,39,'Add Agent','add',1,'active'),(99,39,'List Agent','',2,'active'),(100,40,'Add LC Expanses','add',1,'active'),(101,40,'List LC Expanses','',2,'active'),(102,41,'Add Contract','add',1,'active'),(103,41,'List Contract','',2,'active');
 
 /*Table structure for table `supplier` */
 
@@ -451,7 +589,6 @@ DROP TABLE IF EXISTS `supplier`;
 
 CREATE TABLE `supplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `supplier_id` int(11) DEFAULT NULL,
   `supplier_name` varchar(255) DEFAULT NULL,
   `supplier_address` text,
   `supplier_city` varchar(255) DEFAULT NULL,
@@ -469,7 +606,30 @@ CREATE TABLE `supplier` (
 
 /*Data for the table `supplier` */
 
-insert  into `supplier`(`id`,`supplier_id`,`supplier_name`,`supplier_address`,`supplier_city`,`supplier_state`,`supplier_country`,`owner_name`,`owner_email_address`,`owner_phone_number`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,123,'123','123','Lahore','Punjab','Pakistan','123','123@123.com','123','1','2021-09-27 03:09:56','1','2021-09-27 03:09:09');
+insert  into `supplier`(`id`,`supplier_name`,`supplier_address`,`supplier_city`,`supplier_state`,`supplier_country`,`owner_name`,`owner_email_address`,`owner_phone_number`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'123','123','Lahore','Punjab','Pakistan','123','123@123.com','123','1','2021-09-27 03:09:56','1','2021-09-27 03:09:09');
+
+/*Table structure for table `transporter` */
+
+DROP TABLE IF EXISTS `transporter`;
+
+CREATE TABLE `transporter` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `transporter_name` varchar(255) NOT NULL,
+  `transporter_address` text NOT NULL,
+  `transporter_country` varchar(255) NOT NULL,
+  `transporter_state` varchar(255) NOT NULL,
+  `transporter_city` varchar(255) NOT NULL,
+  `transporter_email_address` varchar(255) NOT NULL,
+  `transporter_phone_number` varchar(255) NOT NULL,
+  `transporter_score` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `transporter` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

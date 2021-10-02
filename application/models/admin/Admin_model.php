@@ -114,33 +114,33 @@ class Admin_model extends CI_Model{
 	}
 
 	//-----------------------------------------------------
-public function add_admin($data){
-	$this->db->insert('ci_admin', $data);
-	return true;
-}
+	public function add_admin($data){
+		$this->db->insert('ci_admin', $data);
+		return true;
+	}
 
 	//---------------------------------------------------
 	// Edit Admin Record
-public function edit_admin($data, $id){
-	$this->db->where('admin_id', $id);
-	$this->db->update('ci_admin', $data);
-	return true;
-}
+	public function edit_admin($data, $id){
+		$this->db->where('admin_id', $id);
+		$this->db->update('ci_admin', $data);
+		return true;
+	}
 
 	//-----------------------------------------------------
-function change_status()
-{		
-	$this->db->set('is_active',$this->input->post('status'));
-	$this->db->where('admin_id',$this->input->post('id'));
-	$this->db->update('ci_admin');
-} 
+	function change_status()
+	{		
+		$this->db->set('is_active',$this->input->post('status'));
+		$this->db->where('admin_id',$this->input->post('id'));
+		$this->db->update('ci_admin');
+	} 
 
 	//-----------------------------------------------------
-function delete($id)
-{		
-	$this->db->where('admin_id',$id);
-	$this->db->delete('ci_admin');
-} 
+	function delete($id)
+	{		
+		$this->db->where('admin_id',$id);
+		$this->db->delete('ci_admin');
+	} 
 
 }
 

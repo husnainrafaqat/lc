@@ -64,11 +64,13 @@ class Auth extends MY_Controller {
 						$this->session->set_userdata($admin_data);
 						$this->rbac->set_access_in_session(); // set access in session
 
-						if($result['is_supper'])
-						redirect(base_url('admin/dashboard/index_1'), 'refresh');
-						else
+						if($result['is_supper']){
+							redirect(base_url('admin/dashboard'), 'refresh');
+							//redirect(base_url('admin/dashboard/index_1'), 'refresh');
+						}else{
 						redirect(base_url('admin/dashboard'), 'refresh');
-
+						}
+						
 						}
 					}
 					else{

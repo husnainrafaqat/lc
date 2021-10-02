@@ -5,6 +5,9 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
 
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
   <!-- Brand Logo -->
   <a href="<?= base_url('admin'); ?>" class="brand-link">
     <img src="<?= base_url($this->general_settings['favicon']); ?>" alt="Logo" class="brand-image img-circle elevation-3"
@@ -26,7 +29,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-compact" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <?php 
@@ -61,7 +64,7 @@ $cur_tab = $this->uri->segment(2)==''?'dashboard': $this->uri->segment(2);
 
             <li class="nav-item">
               <a href="<?= base_url('admin/'.$nav['controller_name'].'/'.$sub_nav['link']); ?>" class="nav-link">
-                <i class="fa fa-circle-o nav-icon"></i>
+                <i class="fa fa-circle-o nav-icon text-sm-imp"></i>
                 <p><?= trans($sub_nav['name']) ?></p>
               </a>
             </li>

@@ -29,12 +29,25 @@
               <div class="form-group col-md-6">
                 <label for="controller_name" class="col-md-12 control-label"><?= trans('field_type') ?>*</label>
                 <div class="col-md-12">
-                    <select name="field_type" class="form-control" required>
-                      <option value=""><?= trans('select') ?></option>
+                    <select name="field_type" class="form-control field_type" required>
+                      <option value=""><?= trans('select_value') ?></option>
                       <?php foreach($field_type as $ft){ ?>
                         <option <?php if($field_date['type']==$ft['type']){echo "selected";} ?> value="<?=$ft['type']?>"><?=$ft['type']?></option>    
                       <?php } ?>
                     </select>                  
+                </div>
+              </div>
+              <?php
+               $option_vals = "";
+                if($field_date['type'] == "select"){
+                  $option_vals = get_options($field_date['id']);                
+                }
+              ?>
+              <div class="form-group col-md-6 dropdown_values <?php if($field_date['type']!="select"){echo "hideThis";} ?> ">
+                <label for="dropdown_values" class="col-md-12 control-label"><?= trans('dropdown_values') ?>*</label>
+                <div class="col-md-12">
+                  <input type="text" name="dropdown_values" class="form-control" id="dropdown_values" value="<?=$option_vals['value']?>" required placeholder="">  
+                  <small>Please Define Comma Seperated Values Eg. Option1,Option2</small>                
                 </div>
               </div>
               
@@ -66,3 +79,17 @@
       </div>
     </section> 
   </div>
+<script>
+jQuery(function($){
+  $(".field_type").change(function(){
+    var val = $(this).val();
+    if(val=="select"){
+      $('.dropdown_values').show();
+      $('.dropdown_values').find('input').prop("required",true);
+    }else{
+      $('.dropdown_values').hide();
+      $('.dropdown_values').find('input').prop("required",false);
+    }
+  });
+});
+</script>

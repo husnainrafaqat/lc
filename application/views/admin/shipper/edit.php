@@ -33,7 +33,12 @@
                               $vals = get_cities();    
                             }
                             if($ff['type']=='select'){
-                              //$vals = get_options();
+                              $get_vals = get_options($ff['id']);
+                              $evals= explode(",",$get_vals['value']);
+                              $vals = array();
+                              foreach($evals as $k=>$v){
+                                  $vals[]['name'] = $v;
+                              }            
                             }
                     ?>
                     <div class="form-group col-md-6">

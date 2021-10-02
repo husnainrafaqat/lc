@@ -31,11 +31,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css" rel="stylesheet">
   <!-- jQuery -->
-  <script src="<?= base_url()?>assets/plugins/jquery/jquery.min.js"></script>
-
+  <script src="<?= base_url()?>assets/plugins/jquery/jquery.min.js"></script>  
 </head>
-
-<body class="hold-transition sidebar-mini <?=  (isset($bg_cover)) ? 'bg-cover' : '' ?>">
+<body class="hold-transition sidebar-mini <?=  (isset($bg_cover)) ? 'bg-cover' : '' ?> text-sm">
 
 <!-- Main Wrapper Start -->
 <div class="wrapper">

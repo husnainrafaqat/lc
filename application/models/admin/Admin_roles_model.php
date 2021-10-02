@@ -182,6 +182,15 @@ class Admin_roles_model extends CI_Model{
 
 	//-----------------------------------------------------
 	
+	function add_dropdown_val($data)
+    {
+		$this->db->insert('ci_dropdown_vals',$data);
+		return $this->db->insert_id();
+    } 
+
+
+	//-----------------------------------------------------
+	
 	function add_form_field($data)
     {
 		$this->db->insert('ci_module_form',$data);
@@ -197,10 +206,21 @@ class Admin_roles_model extends CI_Model{
     }
 
 	//-----------------------------------------------------
+	
+	function edit_dropdown_val($data, $id)
+    {
+		$this->db->where('module_form_id', $id);
+		$this->db->update('ci_dropdown_vals',$data);
+		return true;
+    } 
+
+	//-----------------------------------------------------
 	function delete_form_field($id)
 	{		
 		$this->db->where('id',$id);
 		$this->db->delete('ci_module_form');
+		$this->db->where('module_form_id',$id);
+		$this->db->delete('ci_dropdown_vals');
 		return true;
 	} 
  	
@@ -301,6 +321,14 @@ class Admin_roles_model extends CI_Model{
 			return false;
 		}
 	}
+
+	//-----------------------------------------------------
+	function show_on_datatable()
+	{		
+		$this->db->set('show_on_datatable',$this->input->post('status'));
+		$this->db->where('id',$this->input->post('id'));
+		$this->db->update('ci_module_form');
+	} 
 
 }
 ?>

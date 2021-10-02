@@ -387,6 +387,21 @@ class Admin_roles extends MY_Controller
 				);
 				$data = $this->security->xss_clean($data);
 				$result = $this->admin_roles->add_form_field($data);
+
+				$dropdown_values = $this->input->post('dropdown_values');
+				if(!empty($dropdown_values)){
+					$dropdown_values = str_replace(' ', '', $dropdown_values);
+					$data = array(
+						'module_form_id' => $result,
+						'value' => $dropdown_values,
+					);
+					$data['created_by'] = admin_id();
+					$data['created_at'] = date('Y-m-d : h:m:s');
+					$data = $this->security->xss_clean($data);
+					$result = $this->admin_roles->add_dropdown_val($data);
+				}
+				
+				
 				if($result){
 					$this->session->set_flashdata('success', 'Field has been added successfully!');
 					redirect(base_url('admin/admin_roles/module_form_field_add/'.$parent));
@@ -431,6 +446,20 @@ class Admin_roles extends MY_Controller
 				);
 				$data = $this->security->xss_clean($data);
 				$result = $this->admin_roles->edit_form_field($data, $field_id);
+
+				$dropdown_values = $this->input->post('dropdown_values');
+				if(!empty($dropdown_values)){
+					$dropdown_values = str_replace(' ', '', $dropdown_values);
+					$data = array(					
+						'value' => $dropdown_values,
+					);
+					$data['updated_by'] = admin_id();
+					$data['updated_at'] = date('Y-m-d : h:m:s');
+					$data = $this->security->xss_clean($data);
+					$result = $this->admin_roles->edit_dropdown_val($data, $field_id);
+				}
+				
+
 				if($result){
 					$this->session->set_flashdata('success', 'Field has been Updated successfully!');
 					redirect(base_url('admin/admin_roles/module_form_field_edit/'.$field_id));
@@ -441,7 +470,7 @@ class Admin_roles extends MY_Controller
 			$field_id = $this->uri->segment(4);			
 			$data['title'] = 'Edit Field';
 			$data['field_type'] = $this->admin_roles->get_module_field_type();
-			$data['field_date'] = $this->admin_roles->get_module_field_data($field_id);
+			$data['field_date'] = $this->admin_roles->get_module_field_data($field_id);			
 			$this->load->view('admin/includes/_header');
 			$this->load->view('admin/admin_roles/module_form_field_edit', $data);
 			$this->load->view('admin/includes/_footer');
@@ -470,6 +499,14 @@ class Admin_roles extends MY_Controller
 		redirect('admin/admin_roles/module_form/'.$parent_menu);
 	}
 
+
+	//-----------------------------------------------------------
+	function show_on_datatable(){
+
+		$this->rbac->check_operation_access(); // check opration permission
+
+		$this->admin_roles->show_on_datatable();
+	}
 	
 }
 

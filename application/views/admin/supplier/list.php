@@ -1,5 +1,5 @@
 <div class="datalist">
-    <table id="example1" class="table table-bordered table-hover table-sm">
+    <table id="example1" class="table table-bordered responsive table-hover table-sm" width="100%">
         <thead>
             <tr>
                 <th width="50"><?= trans('id') ?></th>

@@ -16,44 +16,49 @@
            <!-- For Messages -->
             <?php $this->load->view('admin/includes/_messages.php') ?>
 
-            <?php echo form_open(base_url('admin/profile'), 'class="form-horizontal"' )?> 
-              <div class="form-group">
-                <label for="username" class="col-sm-2 control-label"><?= trans('username') ?></label>
+            <?php echo form_open(base_url('admin/profile'), 'class="form-horizontal needs-validation" novalidate="novalidate"' )?> 
+            <div class="row">
+
+              <div class="form-group col-md-6">
+                <label for="username" class="col-sm-12 control-label"><?= trans('username') ?>*</label>
 
                 <div class="col-md-12">
-                  <input type="text" name="username" value="<?= $admin['username']; ?>" class="form-control" id="username" placeholder="">
+                  <input type="text" name="username" value="<?= $admin['username']; ?>" required class="form-control" id="username" placeholder="">
                 </div>
               </div>
-              <div class="form-group">
-                <label for="firstname" class="col-sm-2 control-label"><?= trans('firstname') ?></label>
+              <div class="form-group col-md-6">
+                <label for="firstname" class="col-sm-12 control-label"><?= trans('firstname') ?>*</label>
 
                 <div class="col-md-12">
-                  <input type="text" name="firstname" value="<?= $admin['firstname']; ?>" class="form-control" id="firstname" placeholder="">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="lastname" class="col-sm-2 control-label"><?= trans('lastname') ?></label>
-
-                <div class="col-md-12">
-                  <input type="text" name="lastname" value="<?= $admin['lastname']; ?>" class="form-control" id="lastname" placeholder="">
+                  <input type="text" name="firstname" value="<?= $admin['firstname']; ?>" required class="form-control" id="firstname" placeholder="">
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="email" class="col-sm-2 control-label"><?= trans('email') ?></label>
+              <div class="form-group col-md-6">
+                <label for="lastname" class="col-sm-12 control-label"><?= trans('lastname') ?>*</label>
 
                 <div class="col-md-12">
-                  <input type="email" name="email" value="<?= $admin['email']; ?>" class="form-control" id="email" placeholder="">
+                  <input type="text" name="lastname" value="<?= $admin['lastname']; ?>" required class="form-control" id="lastname" placeholder="">
                 </div>
               </div>
-              <div class="form-group">
-                <label for="mobile_no" class="col-sm-2 control-label"><?= trans('mobile_no') ?></label>
+
+              <div class="form-group col-md-6">
+                <label for="email" class="col-sm-12 control-label"><?= trans('email') ?>*</label>
 
                 <div class="col-md-12">
-                  <input type="number" name="mobile_no" value="<?= $admin['mobile_no']; ?>" class="form-control" id="mobile_no" placeholder="">
+                  <input type="email" name="email" value="<?= $admin['email']; ?>" required class="form-control" id="email" placeholder="">
                 </div>
               </div>
+              <div class="form-group col-md-6">
+                <label for="mobile_no" class="col-sm-12 control-label"><?= trans('mobile_no') ?>*</label>
+
+                <div class="col-md-12">
+                  <input type="number" name="mobile_no" value="<?= $admin['mobile_no']; ?>" required class="form-control" id="mobile_no" placeholder="">
+                </div>
+              </div>
+            
+            </div>
+
               <div class="form-group">
                 <div class="col-md-12">
                   <input type="submit" name="submit" value="<?= trans('update_profile') ?>" class="btn btn-info pull-right">

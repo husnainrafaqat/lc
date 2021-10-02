@@ -32,8 +32,8 @@
               <div class="form-group col-md-6">
                 <label for="controller_name" class="col-md-12 control-label"><?= trans('field_type') ?>*</label>
                 <div class="col-md-12">
-                    <select name="field_type" class="form-control" required>
-                      <option value=""><?= trans('select') ?></option>
+                    <select name="field_type" class="form-control field_type" required>
+                      <option value=""><?= trans('select_value') ?></option>
                       <?php foreach($field_type as $ft){ ?>
                         <option value="<?=$ft['type']?>"><?=$ft['type']?></option>    
                       <?php } ?>
@@ -41,6 +41,14 @@
                 </div>
               </div>
               
+              <div class="form-group col-md-6 dropdown_values hideThis">
+                <label for="dropdown_values" class="col-md-12 control-label"><?= trans('dropdown_values') ?>*</label>
+                <div class="col-md-12">
+                  <input type="text" name="dropdown_values" class="form-control" id="dropdown_values" required placeholder="">  
+                  <small>Please Define Comma Seperated Values Eg. Option1,Option2</small>                
+                </div>
+              </div>
+
               <div class="form-group col-md-6">
                 <label for="is_required" class="col-md-12 control-label"><?= trans('is_required') ?>*</label>
                 <div class="col-md-12">
@@ -69,3 +77,17 @@
       </div>
     </section> 
   </div>
+<script>
+jQuery(function($){
+  $(".field_type").change(function(){
+    var val = $(this).val();
+    if(val=="select"){
+      $('.dropdown_values').show();
+      $('.dropdown_values').find('input').prop("required",true);
+    }else{
+      $('.dropdown_values').hide();
+      $('.dropdown_values').find('input').prop("required",false);
+    }
+  });
+});
+</script>

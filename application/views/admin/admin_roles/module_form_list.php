@@ -27,6 +27,7 @@
 							<th>Type</th>
 							<th>Required</th>
 							<th>Order</th>
+							<th>Show on Datatable</th>
 							<th width="100">Action</th>
 						</tr>
 					</thead>
@@ -38,10 +39,13 @@
 								<td><?= trans($record['type']); ?></td>
 								<td><?= trans($record['is_required']); ?></td>
 								<td><?= $record['sort_order']; ?></td>
-								<td>
-									<a href="<?php echo site_url("admin/admin_roles/module_form_field_edit/".$record['id']); ?>" class="btn btn-warning btn-sm mr5" >
-											<i class="fa fa-edit"></i>
-										</a>
+								<td><input class='tgl tgl-ios tgl_checkbox' 
+									data-id="<?=$record['id']?>" 
+									id='cb_<?=$record['id']?>' 
+									type='checkbox' <?php echo ($record['show_on_datatable'] == "Yes")? "checked" : ""; ?> />
+									<label class='tgl-btn' for='cb_<?=$record['id']?>'></label></td>
+								<td>									
+									<a href="<?php echo site_url("admin/admin_roles/module_form_field_edit/".$record['id']); ?>" class="btn btn-warning btn-sm mr5" ><i class="fa fa-edit"></i></a>
 									<a href="<?php echo site_url("admin/admin_roles/module_form_field_delete/".$record['id']."/".$parent_module); ?>" onclick="return confirm('are you sure to delete?')" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
 								</td>
 							</tr>
@@ -62,5 +66,17 @@
 <script>
   $(function () {
     $("#example1").DataTable();
-  })
+  });
+  //---------------------------------------------------------------------
+	$("body").on("change",".tgl_checkbox",function(){
+	$.post('<?=base_url("admin/admin_roles/show_on_datatable")?>',
+	{
+		'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
+		id : $(this).data('id'),
+		status : $(this).is(':checked')==true?"Yes":"No"
+	},
+	function(data){
+		$.notify("Status Changed Successfully", "success");
+	});
+	});
 </script>

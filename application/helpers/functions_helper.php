@@ -234,6 +234,7 @@
         $ci =& get_instance();
 		$ci->db->from('ci_module_form');
 		$ci->db->order_by('sort_order','asc');
+        $ci->db->where('show_on_datatable',"Yes");
 		$ci->db->where('module_id',$id);
 		$query = $ci->db->get();
 		$module = array();
@@ -297,6 +298,21 @@
 		if ($query->num_rows() > 0) 
 		{
 			$module = $query->result_array();
+		}
+		return $module;
+	}
+
+    //-----------------------------------------------------
+	function get_options($id)
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_dropdown_vals');
+        $ci->db->where('module_form_id',$id);
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->row_array();
 		}
 		return $module;
 	}
