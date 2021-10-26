@@ -21,17 +21,14 @@
 
                   <!-- For Messages -->
                   <?php $this->load->view('admin/includes/_messages.php') ?>
-
-                
-                   
-                    <div class="mb-5 p-4 bg-white shadow-sm">
+                  <div class="mb-5 p-4 bg-white shadow-sm">
                       <h3>LC Generation</h3>
                       <div id="stepperForm" class="bs-stepper">
                         <div class="bs-stepper-header" role="tablist">
                           <div class="step" data-target="#test-form-1">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger1" aria-controls="test-form-1">
                               <span class="bs-stepper-circle">1</span>
-                              <span class="bs-stepper-label">Contract</span>
+                              <span class="bs-stepper-label">Lc Detail</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
@@ -52,7 +49,7 @@
                           <div class="step" data-target="#test-form-4">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger4" aria-controls="test-form-4">
                               <span class="bs-stepper-circle">4</span>
-                              <span class="bs-stepper-label">Bank Documents</span>
+                              <span class="bs-stepper-label">Supplier</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
@@ -66,43 +63,19 @@
                           <div class="step" data-target="#test-form-6">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger6" aria-controls="test-form-6">
                               <span class="bs-stepper-circle">6</span>
-                              <span class="bs-stepper-label">Finalize</span>
+                              <span class="bs-stepper-label">Lc Expenses</span>
                             </button>
                           </div>
                         </div>
                         <div class="bs-stepper-content">
-                        <?php echo form_open(base_url('admin/lc_generation/add'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
-                            <?php include('contract.php'); ?>
+                        <?php //echo form_open(base_url('admin/lc_generation/add'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
+                            <?php include('lc_detail.php'); ?>
                             <?php include('insurance.php'); ?>
-                            
-                            <div id="test-form-3" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger3">
-                              <div class="form-group">
-                                <label for="inputPasswordForm">Password <span class="text-danger font-weight-bold">*</span></label>
-                                <input id="inputPasswordForm" type="password" class="form-control" placeholder="Password" required>
-                                <div class="invalid-feedback">Please fill the password field</div>
-                              </div>
-                              <button class="btn btn-primary btn-next-form">Next</button>
-                            </div>
-                            <div id="test-form-4" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger4">
-                              <div class="form-group">
-                                <label for="inputPasswordForm">Password <span class="text-danger font-weight-bold">*</span></label>
-                                <input id="inputPasswordForm" type="password" class="form-control" placeholder="Password" required>
-                                <div class="invalid-feedback">Please fill the password field</div>
-                              </div>
-                              <button class="btn btn-primary btn-next-form">Next</button>
-                            </div>
-                            <div id="test-form-5" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger5">
-                              <div class="form-group">
-                                <label for="inputPasswordForm">Password <span class="text-danger font-weight-bold">*</span></label>
-                                <input id="inputPasswordForm" type="password" class="form-control" placeholder="Password" required>
-                                <div class="invalid-feedback">Please fill the password field</div>
-                              </div>
-                              <button class="btn btn-primary btn-next-form">Next</button>
-                            </div>
-                            <div id="test-form-6" role="tabpanel" class="bs-stepper-pane fade text-center" aria-labelledby="stepperFormTrigger6">
-                              <button type="submit" class="btn btn-primary mt-5">Submit</button>
-                            </div>
-                            <?php echo form_close(); ?>
+                            <?php include('bank.php'); ?>
+                            <?php include('lc_gen_supplier.php'); ?>                            
+                            <?php include('lc_gen_shipper.php'); ?>
+                            <?php include('lc_expenses.php'); ?>
+                            <?php //echo form_close(); ?>
                         </div>
                       </div>
                     </div>

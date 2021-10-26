@@ -234,6 +234,21 @@
         $ci =& get_instance();
 		$ci->db->from('ci_module_form');
 		$ci->db->order_by('sort_order','asc');
+		$ci->db->where('module_id',$id);
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+    //-----------------------------------------------------
+	function get_form_fields_for_datatable($id)
+	{		
+        $ci =& get_instance();
+		$ci->db->from('ci_module_form');
+		$ci->db->order_by('sort_order','asc');
         $ci->db->where('show_on_datatable',"Yes");
 		$ci->db->where('module_id',$id);
 		$query = $ci->db->get();

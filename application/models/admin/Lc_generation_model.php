@@ -82,8 +82,53 @@ class Lc_generation_model extends CI_Model{
 	}
 
 	//-----------------------------------------------------
+	function get_insurance_companies()
+	{
+
+		$this->db->select('id, insurance_company_name');
+		$this->db->from('insurance_company');
+		$this->db->order_by('insurance_company.id','desc');
+
+		$query = $this->db->get();
+
+		$module = array();
+
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+
+		return $module;
+	}
+
+	//-----------------------------------------------------
+	function get_banks()
+	{
+
+		$this->db->select('id, bank_name');
+		$this->db->from('bank');
+		$this->db->order_by('bank.id','desc');
+
+		$query = $this->db->get();
+
+		$module = array();
+
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+
+		return $module;
+	}
+
+	//-----------------------------------------------------
 	public function add_lc_generation($data){
 		$this->db->insert('lc_generation', $data);
+		return true;
+	}
+	//-----------------------------------------------------
+	public function add_lc_contract($data){
+		$this->db->insert('lc_gen_contract', $data);
 		return true;
 	}
 
@@ -110,6 +155,25 @@ class Lc_generation_model extends CI_Model{
 		$this->db->delete('lc_generation');
 	} 
 	
+	//-----------------------------------------------------
+	function get_contract($id)
+	{
+		$this->db->from('contract');
+		$this->db->where('contract_number',$id);
+		$this->db->order_by('contract.id','desc');
+
+		$query = $this->db->get();
+
+		$module = array();
+
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->row_array();
+		}
+
+		return $module;
+	}
+
 
 }
 

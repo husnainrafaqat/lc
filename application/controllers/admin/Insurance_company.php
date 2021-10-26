@@ -83,7 +83,6 @@ class Insurance_company extends MY_Controller
 
 					$data['created_by'] = admin_id();
 					$data['created_at'] = date('Y-m-d : h:m:s');
-					
 					$data = $this->security->xss_clean($data);
 					$result = $this->insurance_company->add_insurance_company($data);
 					if($result){

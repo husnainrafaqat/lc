@@ -88,3 +88,32 @@
       </div>
     </section> 
   </div>
+<script>
+  jQuery(function($){
+    $("#product_type").change(function(){
+      var val = $(this).val();
+      $('#contract_type').prop('selectedIndex',0);
+      $("#fixed_contract_date").parent().parent().show();
+      $("#contract_fixed_rate").parent().parent().show();
+      $("#rate_non_fixed_contract_rate").parent().parent().hide();
+      if(val=="Machine" || val=="Machine-Parts"){
+        $("#contract_type option[value*='Non-Fixed']").hide();        
+        $("#fixed_contract_date").parent().parent().show();
+        $("#contract_fixed_rate").parent().parent().show();
+      }else{
+        $("#contract_type option[value*='Non-Fixed']").show();        
+        $("#fixed_contract_date").parent().parent().hide();
+        $("#contract_fixed_rate").parent().parent().hide();
+      }
+    });
+    $("#contract_type").change(function(){
+      var ptype = $("#product_type").val();
+      var val = $(this).val();
+      if(ptype="Cotton" && val=="Non-Fixed"){
+        $("#rate_non_fixed_contract_rate").parent().parent().show();
+      }else{
+        $("#rate_non_fixed_contract_rate").parent().parent().hide();
+      }
+    });
+  });
+</script>

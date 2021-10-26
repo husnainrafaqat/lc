@@ -36,7 +36,7 @@ class Contract extends MY_Controller
 		$data['info'] = $this->contract->get_all();
 		$controller_name = $this->uri->segment(2);
 		$module_id = module_id($controller_name);
-		$data['form_fields'] = get_form_fields($module_id);
+		$data['form_fields'] = get_form_fields_for_datatable($module_id);
 		$this->load->view('admin/contract/list',$data);
 	}
 
