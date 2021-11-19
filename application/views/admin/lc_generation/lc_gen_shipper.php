@@ -1,9 +1,12 @@
 <div id="test-form-5" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger5">
+<?php 
+						echo form_open(base_url('admin/lc_generation/add_shipper'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
 <div class="row">
     <div class="form-group col-md-6">
         <label for="shipper_information" class="col-md-12 control-label"><?= trans('shipper_information') ?>*</label>
         <div class="col-md-12">
-            <select name="shipper_information" class="form-control"  id="shipper_information" >
+                      		<input type='hidden' name='lc_id' value=' <?php //echo $lc_obj['id'];?>'/>
+ <select name="shipper_information" class="form-control"  id="shipper_information" >
                 <option>Select Value</option>
                 <?php foreach($shippers as $ship): ?>
                     <option value="<?=$ship['id']?>"><?=$ship['shipper_name']?></option>                
@@ -98,8 +101,12 @@
     
 
     <div class="card-footer form-group col-md-12">
+	<input type="hidden"  name='submit' value="22"/>
         <button class="btn btn-primary btn-next-form float-right">Next</button>
     </div>
     
 </div>    
+
+
+  <?php echo form_close(); ?>
 </div>

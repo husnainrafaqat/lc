@@ -1,6 +1,7 @@
 <div id="test-form-1" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger1">
 
-
+                        <?php 
+						echo form_open(base_url('admin/lc_generation/add'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
     <div class="form-group">
         <label for="contract_no" class="col-md-6 control-label"><?= trans('contract_no') ?>*</label>
         <div class="col-md-6">
@@ -11,30 +12,22 @@
     <div class="contract_details col-md-12 hideThis">
         <div class="alert alert-secondary">
             <table class="table table-striped table-sm">
-                <tr>
-                    <th>Contract Name</th>
-                    <td class="contract_name"></td>
-                </tr>
-                <tr>
-                    <th>Contract Type</th>
-                    <td class="contract_type"></td>
-                </tr>
-                <tr>
-                    <th>HS Code</th>
-                    <td class="hs_code"></td>
-                </tr>
-                <tr>
-                    <th>Rate</th>
-                    <td class="rate"></td>
-                </tr>
-                <tr>
-                    <th>Fixed Contract Date</th>
-                    <td class="fixed_contract_date"></td>
-                </tr>
-                <tr>
-                    <th>Contract Fix Rate</th>
-                    <td class="contract_fix_rate"></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Contract Name</th>
+                        <th>Contract Type</th>
+                        <th>HS Code</th>
+                        <th>Fixed Contract Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="contract_name"></td>
+                        <td class="contract_type"></td>
+                        <td class="hs_code"></td>
+                        <td class="fixed_contract_date"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
@@ -140,15 +133,21 @@
     </div>
     
     <div class="card-footer form-group col-md-12">
+	<input type="hidden"  name='submit' value="22"/>
         <button class="btn btn-primary btn-next-form float-right">Next</button>
     </div>
 
 </div>    
+
+  <?php echo form_close(); ?>
 </div>
 <script>
     jQuery(function($){
-        $("#contract_no").blur(function(){
+        $("#contract_no").change(function(){
             var val = $(this).val();
+            if(val=="" || typeof val  === "undefined"){
+                return false;
+            }
             $(".contract_details").fadeOut();
             $(".contract_details_error").fadeOut();
             if(val!=""){
@@ -174,4 +173,4 @@
             }
         });
     });
-    </script>
+</script>

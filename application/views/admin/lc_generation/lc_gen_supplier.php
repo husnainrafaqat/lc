@@ -1,9 +1,12 @@
 <div id="test-form-4" role="tabpanel" class="bs-stepper-pane fade" aria-labelledby="stepperFormTrigger4">
+<?php 
+						echo form_open(base_url('admin/lc_generation/add_supplier'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
 <div class="row">
     <div class="form-group col-md-6">
         <label for="supplier_company" class="col-md-12 control-label"><?= trans('supplier_company') ?>*</label>
         <div class="col-md-12">
-            <select name="supplier_company" class="form-control"  id="supplier_company" >
+           		<input type='hidden' name='lc_id' value=' <?php //echo $lc_obj['id'];?>'/>
+ <select name="supplier_company" class="form-control"  id="supplier_company" >
                 <option>Select Value</option>
                 <?php foreach($suppliers as $sup): ?>
                     <option value="<?=$sup['id']?>"><?=$sup['supplier_name']?></option>                
@@ -81,8 +84,12 @@
     </div>
 
     <div class="card-footer form-group col-md-12">
+	<input type="hidden"  name='submit' value="22"/>
         <button class="btn btn-primary btn-next-form float-right">Next</button>
     </div>
     
 </div>    
+
+
+  <?php echo form_close(); ?>
 </div>

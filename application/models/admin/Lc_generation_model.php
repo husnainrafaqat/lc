@@ -126,12 +126,33 @@ class Lc_generation_model extends CI_Model{
 		$this->db->insert('lc_generation', $data);
 		return true;
 	}
+	
 	//-----------------------------------------------------
 	public function add_lc_contract($data){
-		$this->db->insert('lc_gen_contract', $data);
+		$this->db->insert('lc_details', $data);
 		return true;
 	}
+public function add_lc_insurance($data){
+		$this->db->insert('lc_gen_insurance', $data);
+		return true;
+	
+}
 
+	public function add_lc_bank($data){
+		$this->db->insert('lc_gen_bank', $data);
+		return true;
+	
+}
+	public function add_lc_supplier($data){
+		$this->db->insert('lc_gen_supplier', $data);
+		return true;
+	
+}
+	public function add_lc_shipper($data){
+		$this->db->insert('lc_gen_shipper', $data);
+		return true;
+	
+}
 	//---------------------------------------------------
 	// Edit Admin Record
 	public function edit_lc_generation($data, $id){
@@ -161,6 +182,42 @@ class Lc_generation_model extends CI_Model{
 		$this->db->from('contract');
 		$this->db->where('contract_number',$id);
 		$this->db->order_by('contract.id','desc');
+
+		$query = $this->db->get();
+
+		$module = array();
+
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->row_array();
+		}
+
+		return $module;
+	}
+	//-----------------------------------------------------
+	function get_bank_details($id)
+	{
+		$this->db->from('bank');
+		$this->db->where('id',$id);
+		$this->db->order_by('bank.id','desc');
+
+		$query = $this->db->get();
+
+		$module = array();
+
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->row_array();
+		}
+
+		return $module;
+	}
+	//-----------------------------------------------------
+	function get_ic_details($id)
+	{
+		$this->db->from('insurance_company');
+		$this->db->where('id',$id);
+		$this->db->order_by('insurance_company.id','desc');
 
 		$query = $this->db->get();
 

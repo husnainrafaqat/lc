@@ -234,7 +234,7 @@
         $ci =& get_instance();
 		$ci->db->from('ci_module_form');
 		$ci->db->order_by('sort_order','asc');
-		$ci->db->where('module_id',$id);
+		$ci->db->where('module_id',$id);        
 		$query = $ci->db->get();
 		$module = array();
 		if ($query->num_rows() > 0) 

@@ -492,7 +492,7 @@ class Admin_roles extends MY_Controller
 	public function module_form_create_table($id = 0){
 		$parent_menu = $this->uri->segment(4);
 		if($this->admin_roles->create_table($parent_menu)){
-			$this->session->set_flashdata('success','Table has been Deleted Successfully.');	
+			$this->session->set_flashdata('success','Table has been Created Successfully.');	
 		}else{
 			$this->session->set_flashdata('errors','Table not created try again.');	
 		}		

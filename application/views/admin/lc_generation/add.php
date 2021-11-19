@@ -18,49 +18,51 @@
               <div class="box">
                 <!-- form start -->
                 <div class="box-body">
-
+<?php
+  //echo $curr_step=   $lc_obj['current_step'];
+?>
                   <!-- For Messages -->
                   <?php $this->load->view('admin/includes/_messages.php') ?>
                   <div class="mb-5 p-4 bg-white shadow-sm">
                       <h3>LC Generation</h3>
                       <div id="stepperForm" class="bs-stepper">
                         <div class="bs-stepper-header" role="tablist">
-                          <div class="step" data-target="#test-form-1">
+                          <div class="step<?php //if(isset($curr_step) && $curr_step==1)echo' active';?>" data-target="#test-form-1">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger1" aria-controls="test-form-1">
                               <span class="bs-stepper-circle">1</span>
-                              <span class="bs-stepper-label">Lc Detail</span>
+                              <span class="bs-stepper-label">Lc Creation</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
-                          <div class="step" data-target="#test-form-2">
+                          <div class="step<?php if(isset($curr_step) && $curr_step==2)echo' active';?>" data-target="#test-form-2">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger2" aria-controls="test-form-2">
                               <span class="bs-stepper-circle">2</span>
                               <span class="bs-stepper-label">Insurance</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
-                          <div class="step" data-target="#test-form-3">
+                          <div class="step<?php if(isset($curr_step) && $curr_step==3)echo' active';?>" data-target="#test-form-3">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger3" aria-controls="test-form-3">
                               <span class="bs-stepper-circle">3</span>
                               <span class="bs-stepper-label">Bank</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
-                          <div class="step" data-target="#test-form-4">
+                          <div class="step<?php if(isset($curr_step) && $curr_step==4)echo' active';?>" data-target="#test-form-4">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger4" aria-controls="test-form-4">
                               <span class="bs-stepper-circle">4</span>
                               <span class="bs-stepper-label">Supplier</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
-                          <div class="step" data-target="#test-form-5">
+                          <div class="step<?php if(isset($curr_step) && $curr_step==5)echo' active';?>" data-target="#test-form-5">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger5" aria-controls="test-form-5">
                               <span class="bs-stepper-circle">5</span>
                               <span class="bs-stepper-label">Shipper</span>
                             </button>
                           </div>
                           <div class="bs-stepper-line"></div>
-                          <div class="step" data-target="#test-form-6">
+                          <div class="step<?php if(isset($curr_step) && $curr_step==6)echo' active';?>" data-target="#test-form-6">
                             <button type="button" class="step-trigger" role="tab" id="stepperFormTrigger6" aria-controls="test-form-6">
                               <span class="bs-stepper-circle">6</span>
                               <span class="bs-stepper-label">Lc Expenses</span>
