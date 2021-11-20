@@ -49,6 +49,18 @@
                 </div>
               </div>
 
+              <div class="form-group col-md-6 entity_list hideThis">
+                <label for="entity_list" class="col-md-12 control-label"><?= trans('entity_list') ?>*</label>
+                <div class="col-md-12">
+                    <select name="entity_list_select" class="form-control entity_list_select" required>
+                      <option value=""><?= trans('select_value') ?></option>
+                      <?php foreach($entity_list as $el){ ?>
+                        <option value="<?=$el['module_id']?>"><?=$el['module_name']?></option>
+                      <?php } ?>
+                    </select>
+                </div>
+              </div>
+
               <div class="form-group col-md-6">
                 <label for="is_required" class="col-md-12 control-label"><?= trans('is_required') ?>*</label>
                 <div class="col-md-12">
@@ -84,9 +96,16 @@ jQuery(function($){
     if(val=="select"){
       $('.dropdown_values').show();
       $('.dropdown_values').find('input').prop("required",true);
+    }else if(val=="entity"){
+      $('.dropdown_values').hide();
+      $('.dropdown_values').find('input').prop("required",false);
+      $('.entity_list').show();
+      $('.entity_list').find('select').prop("required",true);
     }else{
       $('.dropdown_values').hide();
       $('.dropdown_values').find('input').prop("required",false);
+      $('.entity_list').hide();
+      $('.entity_list').find('select').prop("required",false);
     }
   });
 });

@@ -50,6 +50,24 @@
                   <small>Please Define Comma Seperated Values Eg. Option1,Option2</small>                
                 </div>
               </div>
+
+              <?php
+               $option_vals = "";
+                if($field_date['type'] == "entity"){
+                  $entity_vals = get_entity_list();                  
+                }
+              ?>
+              <div class="form-group col-md-6 entity_list <?php if($field_date['type']!="entity"){echo "hideThis";} ?> ">
+                <label for="entity_list" class="col-md-12 control-label"><?= trans('entity_list') ?>*</label>
+                <div class="col-md-12">
+                <select name="entity_list_select" class="form-control entity_list_select" required>
+                      <option value=""><?= trans('select_value') ?></option>
+                      <?php foreach($entity_vals as $el){ ?>
+                        <option value="<?=$el['module_id']?>"><?=$el['module_name']?></option>
+                      <?php } ?>
+                    </select>
+                </div>
+              </div>
               
               <div class="form-group col-md-6">
                 <label for="is_required" class="col-md-12 control-label"><?= trans('is_required') ?>*</label>

@@ -332,4 +332,34 @@
 		return $module;
 	}
 
+    //-----------------------------------------------------
+	function get_entity_list()
+	{		
+        $ci =& get_instance();
+		$ci->db->from('module');
+        $ci->db->where('status','A');
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+		return $module;
+	}
+
+    //-----------------------------------------------------
+	function get_entity_value_list($controller_name)
+	{		
+        $ci =& get_instance();
+        $ci->db->select(array('id',$controller_name.'_name'));
+		$ci->db->from($controller_name);
+		$query = $ci->db->get();
+		$module = array();
+		if ($query->num_rows() > 0) 
+		{
+			$module = $query->result_array();
+		}
+        return $module;
+	}
+
 ?>

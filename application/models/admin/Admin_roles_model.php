@@ -328,7 +328,15 @@ class Admin_roles_model extends CI_Model{
 		$this->db->set('show_on_datatable',$this->input->post('status'));
 		$this->db->where('id',$this->input->post('id'));
 		$this->db->update('ci_module_form');
-	} 
+	}
+
+	//-----------------------------------------------------
+	function get_module_entity_list(){
+		$this->db->select('*');		
+		$query = $this->db->get('module');
+		$this->db->where('status','A');
+		return $query->result_array();
+	}
 
 }
 ?>

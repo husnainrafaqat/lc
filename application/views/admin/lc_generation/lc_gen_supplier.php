@@ -2,6 +2,8 @@
 <?php 
 						echo form_open(base_url('admin/lc_generation/add_supplier'), 'class="form-horizontal needs-validation signup-form" novalidate="novalidate" id="signup-form"');  ?> 
 <div class="row">
+    
+    <?php /* ?>
     <div class="form-group col-md-6">
         <label for="supplier_company" class="col-md-12 control-label"><?= trans('supplier_company') ?>*</label>
         <div class="col-md-12">
@@ -14,6 +16,7 @@
             </select>
         </div>
     </div>
+    <?php */ ?>
 
     <div class="form-group col-md-6">
         <label for="bank_draft_sent_date" class="col-md-12 control-label"><?= trans('bank_draft_sent_date') ?>*</label>
@@ -34,7 +37,8 @@
         </div>
     </div>
     </div>
-
+    
+    <?php /* ?>
     <div class="form-group col-md-6">
         <label for="field_1" class="col-md-12 control-label"><?= trans('field_1') ?>*</label>
         <div class="col-md-12">
@@ -51,6 +55,7 @@
             </select>
         </div>
     </div>
+    
 
     <div class="form-group col-md-6">
         <label for="field_3" class="col-md-12 control-label"><?= trans('field_3') ?>*</label>
@@ -58,6 +63,7 @@
             <input type="date" name="field_3" class="form-control" id="field_3" placeholder="">
         </div>
     </div>
+    <?php */ ?>
 
     <div class="form-group col-md-6">
         <label for="ammendment_in_bank_draft" class="col-md-12 control-label"><?= trans('ammendment_in_bank_draft') ?>*</label>
@@ -67,6 +73,13 @@
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
+        </div>
+    </div>
+
+    <div class="form-group col-md-6 ammendment_in_bank_draft_explain_div hideThis">
+        <label for="ammendment_in_bank_draft_explain" class="col-md-12 control-label"><?= trans('ammendment_in_bank_draft_explain') ?>*</label>
+        <div class="col-md-12">
+        <textarea class="form-control" name="ammendment_in_bank_draft_explain"></textarea>
         </div>
     </div>
 
@@ -93,3 +106,17 @@
 
   <?php echo form_close(); ?>
 </div>
+<script>
+    jQuery(function($){
+        $("#ammendment_in_bank_draft").change(function(){
+            var val = $(this).val();
+            if(val=="yes"){
+                $(".ammendment_in_bank_draft_explain_div").show();
+                $(".ammendment_in_bank_draft_explain_div").find("textarea").prop("required",true);
+            }else{
+                $(".ammendment_in_bank_draft_explain_div").hide();
+                $(".ammendment_in_bank_draft_explain_div").find("textarea").prop("required",false);
+            }
+        });
+    });
+</script>

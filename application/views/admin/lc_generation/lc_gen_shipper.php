@@ -63,13 +63,14 @@
             <input type="date" name="expected_shipment_date" class="form-control" id="expected_shipment_date" placeholder="">
         </div>
     </div>
-
+    <?php /* ?>
     <div class="form-group col-md-6">
         <label for="actual_shipment_date" class="col-md-12 control-label"><?= trans('actual_shipment_date') ?>*</label>
         <div class="col-md-12">
             <input type="text" name="actual_shipment_date" class="form-control" id="actual_shipment_date" placeholder="">
         </div>
     </div>
+    <?php */ ?>
 
     <div class="form-group col-md-6">
         <label for="expected_rec_date" class="col-md-12 control-label"><?= trans('expected_rec_date') ?>*</label>
@@ -77,13 +78,15 @@
             <input type="date" name="expected_rec_date" class="form-control" id="expected_rec_date" placeholder="">
         </div>
     </div>
-
+    
+    <?php /* ?>
     <div class="form-group col-md-6">
         <label for="actual_rec_date" class="col-md-12 control-label"><?= trans('actual_rec_date') ?>*</label>
         <div class="col-md-12">
             <input type="date" name="actual_rec_date" class="form-control" id="actual_rec_date" placeholder="">
         </div>
     </div>
+    <?php */ ?>
 
     <div class="form-group col-md-6">
         <label for="expected_landing_port" class="col-md-12 control-label"><?= trans('expected_landing_port') ?>*</label>
@@ -91,14 +94,15 @@
             <input type="text" name="expected_landing_port" class="form-control" id="expected_landing_port" placeholder="">
         </div>
     </div>
-
+    
+    <?php /* ?>
     <div class="form-group col-md-6">
         <label for="actual_landing_port" class="col-md-12 control-label"><?= trans('actual_landing_port') ?>*</label>
         <div class="col-md-12">
             <input type="text" name="actual_landing_port" class="form-control" id="actual_landing_port" placeholder="">
         </div>
     </div>
-    
+    <?php */ ?>
 
     <div class="card-footer form-group col-md-12">
 	<input type="hidden"  name='submit' value="22"/>

@@ -400,6 +400,18 @@ class Admin_roles extends MY_Controller
 					$data = $this->security->xss_clean($data);
 					$result = $this->admin_roles->add_dropdown_val($data);
 				}
+
+				$entity_list_select = $this->input->post('entity_list_select');
+				if(!empty($entity_list_select)){
+					$data = array(
+						'module_form_id' => $result,
+						'value' => $entity_list_select,
+					);
+					$data['created_by'] = admin_id();
+					$data['created_at'] = date('Y-m-d : h:m:s');
+					$data = $this->security->xss_clean($data);
+					$result = $this->admin_roles->add_dropdown_val($data);
+				}
 				
 				
 				if($result){
@@ -411,6 +423,7 @@ class Admin_roles extends MY_Controller
 		else{
 			$data['title'] = 'Add New Field';
 			$data['field_type'] = $this->admin_roles->get_module_field_type();
+			$data['entity_list'] = $this->admin_roles->get_module_entity_list();
 			$this->load->view('admin/includes/_header');
 			$this->load->view('admin/admin_roles/module_form_field_add', $data);
 			$this->load->view('admin/includes/_footer');
@@ -455,6 +468,18 @@ class Admin_roles extends MY_Controller
 					);
 					$data['updated_by'] = admin_id();
 					$data['updated_at'] = date('Y-m-d : h:m:s');
+					$data = $this->security->xss_clean($data);
+					$result = $this->admin_roles->edit_dropdown_val($data, $field_id);
+				}
+
+				$entity_list_select = $this->input->post('entity_list_select');
+				if(!empty($entity_list_select)){
+					$data = array(
+						'module_form_id' => $result,
+						'value' => $entity_list_select,
+					);
+					$data['created_by'] = admin_id();
+					$data['created_at'] = date('Y-m-d : h:m:s');
 					$data = $this->security->xss_clean($data);
 					$result = $this->admin_roles->edit_dropdown_val($data, $field_id);
 				}

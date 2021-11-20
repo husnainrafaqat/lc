@@ -45,7 +45,12 @@
                               foreach($evals as $k=>$v){
                                   $vals[]['name'] = $v;
                               }                             
-                            }                            
+                            }
+                            if($ff['type']=='entity'){
+                              $get_vals = get_options($ff['id']);
+                              $module_name = module_name($get_vals['value']);
+                              $get_entity_list = get_entity_value_list($module_name);                              
+                            }
                     ?>
                     <div class="form-group col-md-6">
                       <label for="<?=$slug?>" class="col-md-12 control-label"><?= trans($slug) ?><?=$req_star?></label>
@@ -65,6 +70,15 @@
                           }else if($ff['type']=='textarea'){
                         ?>
                           <textarea name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>"></textarea>
+                        <?php }else if($ff['type']=='entity'){ ?>
+                          <select name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>" >
+                          <option>Select value</option>
+                          <?php 
+                            foreach($get_entity_list as $val){
+                          ?>
+                          <option value="<?=$val['id']?>"><?=$val[$module_name.'_name']?></option>
+                          <?php } ?>
+                        </select>
                         <?php }else{ ?>
                           <input type="<?=$ff['type']?>" name="<?=$slug?>" class="form-control" <?=$req?> id="<?=$slug?>" placeholder="">
                         <?php }?>
